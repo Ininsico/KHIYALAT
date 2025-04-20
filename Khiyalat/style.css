@@ -1006,3 +1006,10 @@ footer {
         grid-template-columns: 1fr;
     }
 }
+.nav-link.active {
+    color: var(--accent-light);
+    font-weight: 600;
+}
+.nav-link.active::after {
+    width: 100% !important;
+}

@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | KHIYALAT - AI Companion</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --therapy-dark: #1a2e3a;
+            --therapy-medium: #2a3b46;
+            --therapy-light: #3a4a55;
+            --accent-teal: #2a8a7f;
+            --accent-light: #afd8d0;
+            --text-light: #e0f0ea;
+            --nav-height: 80px;
+        }
+
+        /* Base Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--therapy-medium) 0%, var(--therapy-dark) 100%);
+            color: var(--text-light);
+            min-height: 100vh;
+            margin: 0;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ==================== */
+        /* NAVIGATION FIXES START */
+        /* ==================== */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--nav-height);
+            background: rgba(26, 46, 58, 0.98);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 5%;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+            box-sizing: border-box; /* Added */
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px; /* Reduced from 30px */
+            align-items: center;
+            flex-wrap: wrap; /* Added */
+            justify-content: flex-end; /* Added */
+        }
+
+        .nav-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem; /* Reduced from 1.1rem */
+            position: relative;
+            transition: all 0.3s ease;
+            white-space: nowrap; /* Added */
+        }
+
+        .nav-cta {
+            background-color: var(--accent-teal);
+            color: white;
+            padding: 10px 20px; /* Reduced from 25px */
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            white-space: nowrap; /* Added */
+            font-size: 0.95rem; /* Added */
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 15px; /* Adjusted for mobile */
+            }
+            .nav-link {
+                font-size: 0.9rem; /* Smaller text on mobile */
+            }
+            .nav-cta {
+                padding: 8px 15px; /* Smaller button on mobile */
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-links {
+                gap: 10px; /* Tighter spacing on small mobile */
+            }
+            .nav-logo span {
+                display: none; /* Hide text on very small screens */
+            }
+        }
+        /* ==================== */
+        /* NAVIGATION FIXES END */
+        /* ==================== */
+
+
+        .nav-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent-light);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-logo i {
+            font-size: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .try-button {
+            white-space: nowrap;
+            padding: 8px 12px;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .try-button {
+                display: none;
+                /* or reposition it */
+            }
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-teal);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-light);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link.active {
+            color: var(--accent-light);
+            font-weight: 600;
+        }
+
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            background-color: var(--accent-teal);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .nav-cta:hover {
+            background-color: #1d6a60;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(42, 138, 127, 0.4);
+        }
+
+        /* Animated Background Elements */
+        .floating-thoughts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .thought-bubble {
+            position: absolute;
+            opacity: 0.1;
+            font-size: 2rem;
+            animation: float 15s ease-in-out infinite;
+        }
+
+        .thought-1 {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .thought-2 {
+            top: 70%;
+            right: 15%;
+            animation-delay: 3s;
+            animation-duration: 18s;
+        }
+
+        .thought-3 {
+            top: 40%;
+            right: 5%;
+            animation-delay: 6s;
+            animation-duration: 12s;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            position: relative;
+            padding: calc(var(--nav-height) + 40px) 5% 80px;
+            max-width: 1400px;
+            margin: 0 auto;
+            z-index: 1;
+            flex: 1;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 40px;
+            background: rgba(26, 46, 58, 0.7);
+            backdrop-filter: blur(12px);
+            border-radius: 20px;
+            border: 1px solid rgba(175, 216, 208, 0.2);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            transform: translateY(30px);
+            opacity: 0;
+            animation: fadeInUp 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+        }
+
+        /* Contact Info Panel */
+        .contact-info-panel {
+            padding: 60px 40px;
+            background: linear-gradient(135deg, rgba(42, 138, 127, 0.15) 0%, transparent 100%);
+            position: relative;
+        }
+
+        .contact-info-panel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 70% 30%, rgba(42, 138, 127, 0.1) 0%, transparent 50%);
+        }
+
+        header {
+            width: 100%;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+
+        .contact-header {
+            margin-bottom: 40px;
+            transform: translateX(-20px);
+            opacity: 0;
+            animation: fadeInRight 0.6s 0.3s ease-out forwards;
+        }
+
+        .contact-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            background: linear-gradient(to right, var(--accent-light), white);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .contact-subtitle {
+            font-size: 1.1rem;
+            color: var(--accent-light);
+            line-height: 1.6;
+        }
+
+        /* Contact Methods */
+        .contact-methods {
+            display: grid;
+            gap: 30px;
+        }
+
+        .contact-method {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+            transform: translateX(-20px);
+            opacity: 0;
+        }
+
+        .contact-method:nth-child(1) {
+            animation: fadeInRight 0.6s 0.4s ease-out forwards;
+        }
+
+        .contact-method:nth-child(2) {
+            animation: fadeInRight 0.6s 0.5s ease-out forwards;
+        }
+
+        .contact-method:nth-child(3) {
+            animation: fadeInRight 0.6s 0.6s ease-out forwards;
+        }
+
+        .contact-method:nth-child(4) {
+            animation: fadeInRight 0.6s 0.7s ease-out forwards;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--accent-teal);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+            box-shadow: 0 5px 15px rgba(42, 138, 127, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .contact-method:hover .contact-icon {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 8px 20px rgba(42, 138, 127, 0.6);
+        }
+
+        .contact-details h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: white;
+        }
+
+        .contact-details p,
+        .contact-details a {
+            color: var(--accent-light);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            line-height: 1.6;
+        }
+
+        .contact-details a:hover {
+            color: white;
+            text-shadow: 0 0 5px rgba(175, 216, 208, 0.5);
+        }
+
+        /* Emergency Card */
+        .emergency-card {
+            background: rgba(210, 50, 60, 0.15);
+            border-left: 4px solid rgba(210, 50, 60, 0.6);
+            padding: 20px;
+            border-radius: 0 10px 10px 0;
+            margin-top: 40px;
+            transform: translateX(-20px);
+            opacity: 0;
+            animation: fadeInRight 0.6s 0.8s ease-out forwards;
+        }
+
+        .emergency-card h4 {
+            color: #ff6b6b;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .emergency-contacts {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .emergency-contacts li {
+            margin-bottom: 8px;
+        }
+
+        .emergency-contacts a {
+            color: #ff9e9e !important;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+        }
+
+        /* Contact Form */
+        .contact-form-wrapper {
+            padding: 60px;
+            position: relative;
+        }
+
+        .form-header {
+            margin-bottom: 40px;
+            transform: translateX(20px);
+            opacity: 0;
+            animation: fadeInLeft 0.6s 0.3s ease-out forwards;
+        }
+
+        .form-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--accent-light);
+            position: relative;
+            display: inline-block;
+        }
+
+        .form-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--accent-teal);
+            border-radius: 3px;
+        }
+
+        .form-subtitle {
+            color: var(--accent-light);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* AI Assistant Prompt */
+        .ai-assistant-prompt {
+            background: rgba(42, 138, 127, 0.2);
+            border-left: 4px solid var(--accent-teal);
+            padding: 20px;
+            border-radius: 0 10px 10px 0;
+            margin-bottom: 30px;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            transform: translateY(20px);
+            opacity: 0;
+            animation: fadeInUp 0.6s 0.4s ease-out forwards;
+        }
+
+        .ai-icon {
+            font-size: 1.5rem;
+            color: var(--accent-teal);
+            flex-shrink: 0;
+        }
+
+        .ai-text {
+            font-size: 0.95rem;
+            color: var(--accent-light);
+        }
+
+        .ai-text strong {
+            color: white;
+            font-weight: 600;
+        }
+
+        /* Form Elements */
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+            position: relative;
+            transform: translateY(20px);
+            opacity: 0;
+        }
+
+        .form-group:nth-child(1) {
+            animation: fadeInUp 0.6s 0.5s ease-out forwards;
+        }
+
+        .form-group:nth-child(2) {
+            animation: fadeInUp 0.6s 0.6s ease-out forwards;
+        }
+
+        .form-group:nth-child(3) {
+            animation: fadeInUp 0.6s 0.7s ease-out forwards;
+        }
+
+        .form-group:nth-child(4) {
+            animation: fadeInUp 0.6s 0.8s ease-out forwards;
+        }
+
+        .form-group:nth-child(5) {
+            animation: fadeInUp 0.6s 0.9s ease-out forwards;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--accent-light);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 14px 18px;
+            border-radius: 10px;
+            border: 1px solid rgba(175, 216, 208, 0.3);
+            background: rgba(240, 248, 255, 0.08);
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent-teal);
+            box-shadow: 0 0 0 3px rgba(42, 138, 127, 0.2);
+            background: rgba(240, 248, 255, 0.15);
+        }
+
+        .form-control::placeholder {
+            color: rgba(175, 216, 208, 0.5);
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+            line-height: 1.6;
+        }
+
+        /* Select Dropdown */
+        .select-wrapper {
+            position: relative;
+        }
+
+        .select-wrapper::after {
+            content: '\f078';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            right: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--accent-light);
+            pointer-events: none;
+        }
+
+        select.form-control option {
+            background: var(--therapy-dark);
+            color: var(--text-light);
+            padding: 10px;
+        }
+
+        /* Radio Buttons */
+        .radio-group {
+            display: flex;
+            gap: 20px;
+            margin-top: 10px;
+        }
+
+        .radio-option {
+            position: relative;
+        }
+
+        .radio-input {
+            position: absolute;
+            opacity: 0;
+        }
+
+        .radio-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            color: var(--accent-light);
+            font-size: 0.95rem;
+        }
+
+        .radio-check {
+            width: 18px;
+            height: 18px;
+            border: 2px solid rgba(175, 216, 208, 0.5);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .radio-input:checked~.radio-label .radio-check {
+            border-color: var(--accent-teal);
+            background: var(--accent-teal);
+        }
+
+        .radio-input:checked~.radio-label .radio-check::after {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        /* Submit Button */
+        .submit-btn {
+            background: linear-gradient(135deg, var(--accent-teal), #1d6a60);
+            color: white;
+            border: none;
+            padding: 16px 40px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 15px rgba(42, 138, 127, 0.4);
+            width: 100%;
+            justify-content: center;
+            margin-top: 20px;
+            position: relative;
+            overflow: hidden;
+            transform: translateY(20px);
+            opacity: 0;
+            animation: fadeInUp 0.6s 1s ease-out forwards;
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: all 0.6s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(42, 138, 127, 0.6);
+        }
+
+        .submit-btn:hover::before {
+            left: 100%;
+        }
+
+        /* Character Counter */
+        .char-counter {
+            text-align: right;
+            font-size: 0.85rem;
+            color: rgba(175, 216, 208, 0.6);
+            margin-top: 5px;
+        }
+
+        /* Footer Styles */
+        footer {
+            background: var(--therapy-dark);
+            padding: 60px 5% 30px;
+            margin-top: auto;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 50px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-light);
+            margin-bottom: 20px;
+        }
+
+        .footer-logo i {
+            font-size: 2rem;
+        }
+
+        .footer-about {
+            color: var(--accent-light);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(175, 216, 208, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-light);
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background-color: var(--accent-teal);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .footer-links h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .footer-link {
+            display: block;
+            color: var(--accent-light);
+            margin-bottom: 15px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .footer-contact h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .contact-info {
+            color: var(--accent-light);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .contact-info i {
+            margin-top: 3px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            margin-top: 40px;
+            border-top: 1px solid rgba(175, 216, 208, 0.1);
+            color: var(--accent-light);
+            font-size: 0.9rem;
+        }
+
+        .copyright {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-20px) rotate(5deg);
+            }
+        }
+
+        @keyframes fadeOut {
+            to {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-info-panel {
+                padding: 40px;
+            }
+
+            .contact-form-wrapper {
+                padding: 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-title {
+                font-size: 2rem;
+            }
+
+            .form-title {
+                font-size: 1.8rem;
+            }
+
+            .nav-links {
+                gap: 20px;
+            }
+
+            .nav-link {
+                font-size: 1rem;
+            }
+
+            .nav-cta {
+                padding: 8px 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-links {
+                gap: 15px;
+            }
+
+            .nav-logo span {
+                display: none;
+            }
+
+            .contact-method {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .radio-group {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+     <!-- Floating Background Elements -->
+     <div class="floating-thoughts">
+        <div class="thought-bubble thought-1">💭</div>
+        <div class="thought-bubble thought-2">🧠</div>
+        <div class="thought-bubble thought-3">🌱</div>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="index.html" class="nav-logo">
+            <i class="fas fa-brain"></i>
+            <span>KHIYALAT</span>
+        </a>
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="features.html" class="nav-link">Features</a>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="contact.html" class="nav-link active">Contact</a>
+            <a href="try-now.html" class="nav-link nav-cta">Try Now</a>
+        </div>
+    </nav>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="contact-container">
+            <!-- Contact Info Panel -->
+            <div class="contact-info-panel">
+                <div class="contact-header">
+                    <h1 class="contact-title">Let's Connect</h1>
+                    <p class="contact-subtitle">Our team is here to support you on your mental wellness journey.</p>
+                </div>
+
+                <div class="contact-methods">
+                    <div class="contact-method">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Email Us</h4>
+                            <a href="mailto:support@khiyalat.com">support@khiyalat.com</a>
+                        </div>
+                    </div>
+
+                    <div class="contact-method">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Call Us</h4>
+                            <a href="tel:+923315821144">+92 331 5821144</a>
+                        </div>
+                    </div>
+
+                    <div class="contact-method">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Our Office</h4>
+                            <p>Jhelum, Punjab Pakistan</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-method">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Working Hours</h4>
+                            <p>Monday-Friday: 9AM-6PM<br>Saturday: 10AM-4PM</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="emergency-card">
+                    <h4><i class="fas fa-exclamation-triangle"></i> Emergency Support</h4>
+                    <ul class="emergency-contacts">
+                        <li><a href="tel:+923315821144"><i class="fas fa-phone-alt"></i> KHIYALAT Crisis Line</a></li>
+                        <li><a href="tel:+921123456789"><i class="fas fa-phone-alt"></i> National Helpline</a></li>
+                        <li><a href="https://www.mentalhealth.gov" target="_blank"><i class="fas fa-globe"></i> Mental
+                                Health Resources</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="contact-form-wrapper">
+                <div class="form-header">
+                    <h2 class="form-title">Send Us a Message</h2>
+                    <p class="form-subtitle">We'll get back to you within 24 hours</p>
+                </div>
+
+                <div class="ai-assistant-prompt">
+                    <i class="fas fa-robot ai-icon"></i>
+                    <p class="ai-text"><strong>AI Assistant Tip:</strong> Be as detailed as possible about your inquiry
+                        to help us serve you better.</p>
+                </div>
+
+                <form id="contactForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="name" class="form-label">Full Name</label>
+                            <input type="text" id="name" class="form-control" placeholder="Enter your full name"
+                                required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email Address</label>
+                            <input type="email" id="email" class="form-control" placeholder="your@email.com" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject" class="form-label">Subject</label>
+                        <div class="select-wrapper">
+                            <select id="subject" class="form-control" required>
+                                <option value="" disabled selected>Select a subject</option>
+                                <option value="support">Technical Support</option>
+                                <option value="feedback">Product Feedback</option>
+                                <option value="therapy">Therapy Inquiry</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Priority Level</label>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" id="priorityLow" name="priority" value="low" class="radio-input">
+                                <label for="priorityLow" class="radio-label">
+                                    <span class="radio-check"></span>
+                                    <span>Low</span>
+                                </label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="priorityMedium" name="priority" value="medium"
+                                    class="radio-input" checked>
+                                <label for="priorityMedium" class="radio-label">
+                                    <span class="radio-check"></span>
+                                    <span>Medium</span>
+                                </label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="priorityHigh" name="priority" value="high" class="radio-input">
+                                <label for="priorityHigh" class="radio-label">
+                                    <span class="radio-check"></span>
+                                    <span>High</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message" class="form-label">Your Message</label>
+                        <textarea id="message" class="form-control" placeholder="Type your message here..."
+                            required></textarea>
+                        <div class="char-counter"><span id="charCount">0</span>/500 characters</div>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-paper-plane"></i> Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-about-col">
+                <div class="footer-logo">
+                    <i class="fas fa-brain"></i>
+                    <span>KHIYALAT</span>
+                </div>
+                <p class="footer-about">
+                    Khiyalat is an AI psychological companion designed to help you understand and navigate your thoughts
+                    with compassion and insight.
+                </p>
+                <div class="footer-social">
+                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                </div>
+            </div>
+            <div class="footer-links-col">
+                <h3>Quick Links</h3>
+                <a href="index.html" class="footer-link">Home</a>
+                <a href="features.html" class="footer-link">Features</a>
+                <a href="about.html" class="footer-link">About</a>
+                <a href="contact.html" class="footer-link">Contact</a>
+                <a href="try-now.html" class="footer-link">Try Now</a>
+            </div>
+            <div class="footer-links-col">
+                <h3>Resources</h3>
+                <a href="blog.html" class="footer-link">Blog</a>
+                <a href="contact.html" class="footer-link">Help Center</a>
+                <a href="Privacy-policy.html" class="footer-link">Privacy Policy</a>
+                <a href="termsofservice.html" class="footer-link">Terms of Service</a>
+                <a href="research.html" class="footer-link">Research</a>
+            </div>
+            <div class="footer-contact-col">
+                <h3>Contact Us</h3>
+                <div class="contact-info">
+                    <i class="fas fa-envelope"></i>
+                    <span>support@khiyalat.com</span>
+                </div>
+                <div class="contact-info">
+                    <i class="fas fa-phone-alt"></i>
+                    <span>+923315821144</span>
+                </div>
+                <div class="contact-info">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Jhelum, Punjab Pakistan</span>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="copyright">
+                <i class="far fa-copyright"></i>
+                <span>2025 KHIYALAT. All rights reserved.</span>
+            </div>
+            <p>AI does not replace professional medical advice. If in crisis, please contact emergency services.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Character counter
+        const messageTextarea = document.getElementById('message');
+        const charCount = document.getElementById('charCount');
+
+        messageTextarea.addEventListener('input', function () {
+            charCount.textContent = this.value.length;
+            if (this.value.length > 450) {
+                charCount.style.color = '#ff6b6b';
+            } else {
+                charCount.style.color = 'rgba(175, 216, 208, 0.6)';
+            }
+        });
+
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Show loading state
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            submitBtn.disabled = true;
+
+            // Simulate API call
+            setTimeout(() => {
+                // Create success animation
+                submitBtn.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
+                submitBtn.style.background = 'linear-gradient(135deg, #4CAF50, #2E7D32)';
+
+                // Reset form after delay
+                setTimeout(() => {
+                    this.reset();
+                    charCount.textContent = '0';
+                    charCount.style.color = 'rgba(175, 216, 208, 0.6)';
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.style.background = 'linear-gradient(135deg, var(--accent-teal), #1d6a60)';
+                    submitBtn.disabled = false;
+
+                    // Show floating confirmation
+                    const confirmation = document.createElement('div');
+                    confirmation.innerHTML = `
+                        <div style="position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); 
+                        background: rgba(42, 138, 127, 0.9); padding: 15px 25px; border-radius: 50px; 
+                        box-shadow: 0 5px 20px rgba(0,0,0,0.3); z-index: 1000; animation: fadeInUp 0.5s ease-out;">
+                            <i class="fas fa-check-circle"></i> Thank you! We'll respond soon.
+                        </div>
+                    `;
+                    document.body.appendChild(confirmation);
+                    setTimeout(() => {
+                        confirmation.style.animation = 'fadeOut 0.5s ease-out forwards';
+                        setTimeout(() => confirmation.remove(), 500);
+                    }, 3000);
+                }, 1500);
+            }, 1500);
+        });
+
+        // Animate contact icons on hover
+        document.querySelectorAll('.contact-icon').forEach(icon => {
+            icon.addEventListener('mouseenter', function () {
+                this.style.transform = 'scale(1.1) rotate(5deg)';
+            });
+            icon.addEventListener('mouseleave', function () {
+                this.style.transform = 'scale(1) rotate(0)';
+            });
+        });
+
+        // Fixed header behavior
+        window.addEventListener('scroll', function () {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.style.backgroundColor = 'rgba(26, 46, 58, 0.98)';
+                nav.style.boxShadow = '0 5px 25px rgba(0, 0, 0, 0.3)';
+            } else {
+                nav.style.backgroundColor = 'rgba(26, 46, 58, 0.98)';
+                nav.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.2)';
+            }
+        });
+
+        // Initialize active nav link
+        document.addEventListener('DOMContentLoaded', function () {
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            document.querySelectorAll('.nav-link').forEach(link => {
+                if (link.getAttribute('href') === currentPage) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

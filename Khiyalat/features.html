@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Features | KHIYALAT - AI Companion</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --therapy-dark: #1a2e3a;
+            --therapy-medium: #2a3b46;
+            --therapy-light: #3a4a55;
+            --accent-teal: #2a8a7f;
+            --accent-light: #afd8d0;
+            --text-light: #e0f0ea;
+            --nav-height: 80px;
+        }
+
+        /* Base Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--therapy-medium) 0%, var(--therapy-dark) 100%);
+            color: var(--text-light);
+            min-height: 100vh;
+            margin: 0;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--nav-height);
+            background: rgba(26, 46, 58, 0.98);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 5%;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+            box-sizing: border-box;
+        }
+
+        .nav-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent-light);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            white-space: nowrap;
+        }
+
+        .nav-logo i {
+            font-size: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            position: relative;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-teal);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-light);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link.active {
+            color: var(--accent-light);
+            font-weight: 600;
+        }
+
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            background-color: var(--accent-teal);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            white-space: nowrap;
+        }
+
+        .nav-cta:hover {
+            background-color: #1d6a60;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(42, 138, 127, 0.4);
+        }
+
+        /* Features Section */
+        .features-section {
+            position: relative;
+            padding: calc(var(--nav-height) + 40px) 5% 80px;
+            max-width: 1400px;
+            margin: 0 auto;
+            z-index: 1;
+            flex: 1;
+        }
+
+        .features-header {
+            text-align: center;
+            margin-bottom: 60px;
+            transform: translateY(20px);
+            opacity: 0;
+            animation: fadeInUp 0.8s 0.3s ease-out forwards;
+        }
+
+        .features-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, var(--accent-light), white);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .features-subtitle {
+            font-size: 1.2rem;
+            color: var(--accent-light);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Flip Card Styles */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            perspective: 1000px;
+            height: 400px;
+            transform: translateY(30px);
+            opacity: 0;
+        }
+
+        .feature-card:nth-child(1) {
+            animation: fadeInUp 0.8s 0.4s ease-out forwards;
+        }
+
+        .feature-card:nth-child(2) {
+            animation: fadeInUp 0.8s 0.5s ease-out forwards;
+        }
+
+        .feature-card:nth-child(3) {
+            animation: fadeInUp 0.8s 0.6s ease-out forwards;
+        }
+
+        .feature-card:nth-child(4) {
+            animation: fadeInUp 0.8s 0.7s ease-out forwards;
+        }
+
+        .feature-card:nth-child(5) {
+            animation: fadeInUp 0.8s 0.8s ease-out forwards;
+        }
+
+        .feature-card:nth-child(6) {
+            animation: fadeInUp 0.8s 0.9s ease-out forwards;
+        }
+
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .feature-card.flipped .card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .card-front,
+        .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 20px;
+            padding: 30px;
+            box-sizing: border-box;
+            background: rgba(26, 46, 58, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(175, 216, 208, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: all 0.4s ease;
+        }
+
+        .card-front:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+            border-color: rgba(42, 138, 127, 0.5);
+        }
+
+        .card-back {
+            transform: rotateY(180deg);
+            background: linear-gradient(135deg, rgba(42, 138, 127, 0.2) 0%, rgba(26, 46, 58, 0.9) 100%);
+            justify-content: center;
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--accent-teal);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(42, 138, 127, 0.4);
+        }
+
+        .feature-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: white;
+        }
+
+        .feature-description {
+            color: var(--accent-light);
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        .learn-more-btn {
+            background: var(--accent-teal);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: auto;
+        }
+
+        .learn-more-btn:hover {
+            background: #1d6a60;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(42, 138, 127, 0.4);
+        }
+
+        .back-btn {
+            background: transparent;
+            color: var(--accent-light);
+            border: 1px solid var(--accent-light);
+            padding: 10px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 20px;
+        }
+
+        .back-btn:hover {
+            background: rgba(175, 216, 208, 0.1);
+        }
+
+        .how-it-works {
+            text-align: left;
+            width: 100%;
+        }
+
+        .how-it-works li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 25px;
+            line-height: 1.6;
+        }
+
+        .how-it-works li:before {
+            content: "•";
+            color: var(--accent-teal);
+            font-size: 1.5rem;
+            position: absolute;
+            left: 0;
+            top: -5px;
+        }
+
+        /* Testimonials Section */
+        .testimonials-section {
+            margin-top: 100px;
+            text-align: center;
+        }
+
+        .testimonials-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 50px;
+            color: var(--accent-light);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background: rgba(26, 46, 58, 0.5);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: left;
+            border-left: 4px solid var(--accent-teal);
+            transform: translateY(30px);
+            opacity: 0;
+        }
+
+        .testimonial-card:nth-child(1) {
+            animation: fadeInUp 0.8s 0.5s ease-out forwards;
+        }
+
+        .testimonial-card:nth-child(2) {
+            animation: fadeInUp 0.8s 0.6s ease-out forwards;
+        }
+
+        .testimonial-card:nth-child(3) {
+            animation: fadeInUp 0.8s 0.7s ease-out forwards;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            color: var(--text-light);
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--accent-teal);
+        }
+
+        .author-info h4 {
+            margin: 0;
+            color: white;
+            font-weight: 600;
+        }
+
+        .author-info p {
+            margin: 5px 0 0;
+            color: var(--accent-light);
+            font-size: 0.9rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            margin-top: 100px;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(42, 138, 127, 0.1) 0%, transparent 100%);
+            padding: 60px 5%;
+            border-radius: 20px;
+            border: 1px solid rgba(175, 216, 208, 0.2);
+            transform: translateY(30px);
+            opacity: 0;
+            animation: fadeInUp 0.8s 0.8s ease-out forwards;
+        }
+
+        .cta-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--accent-light);
+        }
+
+        .cta-subtitle {
+            color: var(--accent-light);
+            max-width: 700px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, var(--accent-teal), #1d6a60);
+            color: white;
+            border: none;
+            padding: 16px 40px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 15px rgba(42, 138, 127, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(42, 138, 127, 0.6);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--therapy-dark);
+            padding: 60px 5% 30px;
+            margin-top: auto;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 50px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-light);
+            margin-bottom: 20px;
+        }
+
+        .footer-logo i {
+            font-size: 2rem;
+        }
+
+        .footer-about {
+            color: var(--accent-light);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(175, 216, 208, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-light);
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background-color: var(--accent-teal);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .footer-links h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .footer-link {
+            display: block;
+            color: var(--accent-light);
+            margin-bottom: 15px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .footer-contact h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .contact-info {
+            color: var(--accent-light);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .contact-info i {
+            margin-top: 3px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            margin-top: 40px;
+            border-top: 1px solid rgba(175, 216, 208, 0.1);
+            color: var(--accent-light);
+            font-size: 0.9rem;
+        }
+
+        .copyright {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes cardFlip {
+            0% {
+                transform: rotateY(0) scale(1);
+            }
+
+            50% {
+                transform: rotateY(90deg) scale(0.95);
+            }
+
+            100% {
+                transform: rotateY(180deg) scale(1);
+            }
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-20px) rotate(5deg);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .features-title {
+                font-size: 2.2rem;
+            }
+
+            .features-subtitle {
+                font-size: 1rem;
+            }
+
+            .feature-card {
+                height: 380px;
+            }
+
+            .feature-icon {
+                width: 70px;
+                height: 70px;
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .features-title {
+                font-size: 1.8rem;
+            }
+
+            .nav-logo span {
+                display: none;
+            }
+
+            .feature-card {
+                height: 420px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="index.html" class="nav-logo">
+            <i class="fas fa-brain"></i>
+            <span>KHIYALAT</span>
+        </a>
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="features.html" class="nav-link active">Features</a>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+            <a href="try-now.html" class="nav-link nav-cta">Try Now</a>
+        </div>
+    </nav>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="features-header">
+            <h1 class="features-title">Powerful Mental Wellness Features</h1>
+            <p class="features-subtitle">Discover how KHIYALAT's AI companion helps you understand and navigate your
+                thoughts with compassion and insight</p>
+        </div>
+
+        <div class="features-grid">
+            <!-- Thought Analysis Card -->
+            <div class="feature-card" onclick="flipCard(this)">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <div class="feature-icon">
+                            <i class="fas fa-comment-dots"></i>
+                        </div>
+                        <h3 class="feature-title">Thought Analysis</h3>
+                        <p class="feature-description">Our AI analyzes your thought patterns to identify negative cycles
+                            and provide constructive alternatives.</p>
+                        <button class="learn-more-btn">
+                            <i class="fas fa-search"></i> Learn More
+                        </button>
+                    </div>
+                    <div class="card-back">
+                        <h3 class="feature-title">How Thought Analysis Works</h3>
+                        <div class="how-it-works">
+                            <ul>
+                                <li>Natural language processing detects cognitive distortions</li>
+                                <li>Identifies recurring negative thought patterns</li>
+                                <li>Provides science-based reframing techniques</li>
+                                <li>Tracks improvement over time with metrics</li>
+                            </ul>
+                        </div>
+                        <button class="back-btn"
+                            onclick="event.stopPropagation(); flipCard(this.closest('.feature-card'))">
+                            <i class="fas fa-arrow-left"></i> Back to Feature
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mood Tracking Card -->
+            <div class="feature-card" onclick="flipCard(this)">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <div class="feature-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h3 class="feature-title">Mood Tracking</h3>
+                        <p class="feature-description">Visualize your emotional journey with detailed mood charts and
+                            personalized insights.</p>
+                        <button class="learn-more-btn">
+                            <i class="fas fa-search"></i> Learn More
+                        </button>
+                    </div>
+                    <div class="card-back">
+                        <h3 class="feature-title">How Mood Tracking Works</h3>
+                        <div class="how-it-works">
+                            <ul>
+                                <li>Daily emotion logging with intensity scales</li>
+                                <li>AI detects patterns and triggers</li>
+                                <li>Generates personalized mood forecasts</li>
+                                <li>Correlates activities with emotional states</li>
+                            </ul>
+                        </div>
+                        <button class="back-btn"
+                            onclick="event.stopPropagation(); flipCard(this.closest('.feature-card'))">
+                            <i class="fas fa-arrow-left"></i> Back to Feature
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Guided Journaling Card -->
+            <div class="feature-card" onclick="flipCard(this)">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <div class="feature-icon">
+                            <i class="fas fa-journal-whills"></i>
+                        </div>
+                        <h3 class="feature-title">Guided Journaling</h3>
+                        <p class="feature-description">Structured prompts help you explore your thoughts deeply while
+                            maintaining privacy.</p>
+                        <button class="learn-more-btn">
+                            <i class="fas fa-search"></i> Learn More
+                        </button>
+                    </div>
+                    <div class="card-back">
+                        <h3 class="feature-title">How Journaling Works</h3>
+                        <div class="how-it-works">
+                            <ul>
+                                <li>100+ therapist-approved prompts</li>
+                                <li>AI suggests follow-up questions</li>
+                                <li>End-to-end encrypted entries</li>
+                                <li>Identifies themes and progress</li>
+                            </ul>
+                        </div>
+                        <button class="back-btn"
+                            onclick="event.stopPropagation(); flipCard(this.closest('.feature-card'))">
+                            <i class="fas fa-arrow-left"></i> Back to Feature
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Active Listening Card -->
+            <div class="feature-card" onclick="flipCard(this)">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <div class="feature-icon">
+                            <i class="fas fa-assistive-listening-systems"></i>
+                        </div>
+                        <h3 class="feature-title">Active Listening</h3>
+                        <p class="feature-description">Our AI companion provides non-judgmental listening available 24/7
+                            whenever you need to talk.</p>
+                        <button class="learn-more-btn">
+                            <i class="fas fa-search"></i> Learn More
+                        </button>
+                    </div>
+                    <div class="card-back">
+                        <h3 class="feature-title">How Listening Works</h3>
+                        <div class="how-it-works">
+                            <ul>
+                                <li>Voice or text conversation anytime</li>
+                                <li>Emotion recognition technology</li>
+                                <li>Validating and supportive responses</li>
+                                <li>Crisis detection with resources</li>
+                            </ul>
+                        </div>
+                        <button class="back-btn"
+                            onclick="event.stopPropagation(); flipCard(this.closest('.feature-card'))">
+                            <i class="fas fa-arrow-left"></i> Back to Feature
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cognitive Exercises Card -->
+            <div class="feature-card" onclick="flipCard(this)">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <div class="feature-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3 class="feature-title">Cognitive Exercises</h3>
+                        <p class="feature-description">Personalized mental exercises to help reframe negative thinking
+                            patterns.</p>
+                        <button class="learn-more-btn">
+                            <i class="fas fa-search"></i> Learn More
+                        </button>
+                    </div>
+                    <div class="card-back">
+                        <h3 class="feature-title">How Exercises Work</h3>
+                        <div class="how-it-works">
+                            <ul>
+                                <li>CBT-based thought challenging</li>
+                                <li>Personalized distortion correction</li>
+                                <li>Behavioral experiment suggestions</li>
+                                <li>Mindfulness integration</li>
+                            </ul>
+                        </div>
+                        <button class="back-btn"
+                            onclick="event.stopPropagation(); flipCard(this.closest('.feature-card'))">
+                            <i class="fas fa-arrow-left"></i> Back to Feature
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Progress Tracking Card -->
+            <div class="feature-card" onclick="flipCard(this)">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3 class="feature-title">Progress Tracking</h3>
+                        <p class="feature-description">See your mental wellness journey with clear metrics and
+                            improvement indicators.</p>
+                        <button class="learn-more-btn">
+                            <i class="fas fa-search"></i> Learn More
+                        </button>
+                    </div>
+                    <div class="card-back">
+                        <h3 class="feature-title">How Tracking Works</h3>
+                        <div class="how-it-works">
+                            <ul>
+                                <li>Custom wellness score calculation</li>
+                                <li>Milestone achievement tracking</li>
+                                <li>Comparative period analysis</li>
+                                <li>Personalized growth insights</li>
+                            </ul>
+                        </div>
+                        <button class="back-btn"
+                            onclick="event.stopPropagation(); flipCard(this.closest('.feature-card'))">
+                            <i class="fas fa-arrow-left"></i> Back to Feature
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Testimonials -->
+        <div class="testimonials-section">
+            <h2 class="testimonials-title">What Our Users Say</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"KHIYALAT helped me recognize negative thought patterns I didn't even
+                        realize I had. The journaling feature became my daily mental health check-in."</p>
+                    <div class="testimonial-author">
+                        <img src="huzaifa.png" alt="Huzaifa" class="author-avatar">
+                        <div class="author-info">
+                            <h4>Huzaifa</h4>
+                            <p>User for 8 months</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"As someone skeptical about mental health apps, I was surprised how
+                        quickly I formed a connection with KHIYALAT."</p>
+                    <div class="testimonial-author">
+                        <img src="Ahmedullah.png" alt="Ahmedullah" class="author-avatar">
+                        <div class="author-info">
+                            <h4>Ahmedullah</h4>
+                            <p>User for 3 months</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"The mood tracking feature helped me identify triggers I never noticed
+                        before. The amount of payload it has reduced is truly impressive for me."</p>
+                    <div class="testimonial-author">
+                        <img src="ayyan.png" alt="Ayyan" class="author-avatar">
+                        <div class="author-info">
+                            <h4>Ayyan</h4>
+                            <p>User for 1 month</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA Section -->
+        <div class="cta-section">
+            <h2 class="cta-title">Ready to Start Your Journey?</h2>
+            <p class="cta-subtitle">Join thousands of users who have found clarity and peace of mind with KHIYALAT's AI
+                companion.</p>
+            <a href="try-now.html" class="cta-button">
+                <i class="fas fa-rocket"></i> Get Started Now
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-about-col">
+                <div class="footer-logo">
+                    <i class="fas fa-brain"></i>
+                    <span>KHIYALAT</span>
+                </div>
+                <p class="footer-about">
+                    Khiyalat is an AI psychological companion designed to help you understand and navigate your thoughts
+                    with compassion and insight.
+                </p>
+                <div class="footer-social">
+                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                </div>
+            </div>
+            <div class="footer-links-col">
+                <h3>Quick Links</h3>
+                <a href="index.html" class="footer-link">Home</a>
+                <a href="features.html" class="footer-link">Features</a>
+                <a href="about.html" class="footer-link">About</a>
+                <a href="contact.html" class="footer-link">Contact</a>
+                <a href="try-now.html" class="footer-link">Try Now</a>
+            </div>
+            <div class="footer-links-col">
+                <h3>Resources</h3>
+                <a href="blog.html" class="footer-link">Blog</a>
+                <a href="contact.html" class="footer-link">Help Center</a>
+                <a href="Privacy-policy.html" class="footer-link">Privacy Policy</a>
+                <a href="termsofservice.html" class="footer-link">Terms of Service</a>
+                <a href="research.html" class="footer-link">Research</a>
+            </div>
+            <div class="footer-contact-col">
+                <h3>Contact Us</h3>
+                <div class="contact-info">
+                    <i class="fas fa-envelope"></i>
+                    <span>ininsico@gmail.com</span>
+                </div>
+                <div class="contact-info">
+                    <i class="fas fa-phone-alt"></i>
+                    <span>+923315821144</span>
+                </div>
+                <div class="contact-info">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Jhelum, Punjab Pakistan</span>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="copyright">
+                <i class="far fa-copyright"></i>
+                <span>2025 KHIYALAT. All rights reserved.</span>
+            </div>
+            <p>AI does not replace professional medical advice. If in crisis, please contact emergency services.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Card flipping functionality
+        function flipCard(card) {
+            // Don't flip if clicking on back button (handled separately)
+            if (event.target.classList.contains('back-btn') ||
+                event.target.classList.contains('fa-arrow-left')) {
+                return;
+            }
+
+            card.classList.toggle('flipped');
+
+            // Add Pokemon-style "throwing" animation
+            if (card.classList.contains('flipped')) {
+                card.style.transform = 'translateY(-20px)';
+                setTimeout(() => {
+                    card.style.transform = 'translateY(0)';
+                }, 300);
+            }
+        }
+
+        // Back button functionality
+        document.querySelectorAll('.back-btn').forEach(button => {
+            button.addEventListener('click', function (e) {
+                e.stopPropagation(); // Prevent event bubbling
+                const card = this.closest('.feature-card');
+                card.classList.remove('flipped');
+
+                // Add return animation
+                card.style.transform = 'translateY(-10px)';
+                setTimeout(() => {
+                    card.style.transform = 'translateY(0)';
+                }, 200);
+            });
+        });
+
+        // Initialize animations on scroll
+        document.addEventListener('DOMContentLoaded', function () {
+            const animateOnScroll = function () {
+                const elements = document.querySelectorAll('.feature-card, .testimonial-card');
+                elements.forEach(element => {
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+
+                    if (elementPosition < windowHeight - 100) {
+                        element.style.opacity = '1';
+                        element.style.transform = 'translateY(0)';
+                    }
+                });
+            };
+
+            window.addEventListener('scroll', animateOnScroll);
+            animateOnScroll(); // Trigger once on load
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy | KHIYALAT</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --therapy-dark: #1a2e3a;
+            --therapy-medium: #2a3b46;
+            --therapy-light: #3a4a55;
+            --accent-teal: #2a8a7f;
+            --accent-light: #afd8d0;
+            --text-light: #e0f0ea;
+            --nav-height: 80px;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--therapy-medium) 0%, var(--therapy-dark) 100%);
+            color: var(--text-light);
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            line-height: 1.6;
+        }
+
+        /* Navigation - Same as features.html */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--nav-height);
+            background: rgba(26, 46, 58, 0.98);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 5%;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+            box-sizing: border-box;
+        }
+
+        .nav-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent-light);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            white-space: nowrap;
+        }
+
+        .nav-logo i {
+            font-size: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            position: relative;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-teal);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-light);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link.active {
+            color: var(--accent-light);
+            font-weight: 600;
+        }
+
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            background-color: var(--accent-teal);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            white-space: nowrap;
+        }
+
+        .nav-cta:hover {
+            background-color: #1d6a60;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(42, 138, 127, 0.4);
+        }
+
+        /* Privacy Content */
+        .privacy-container {
+            max-width: 900px;
+            margin: calc(var(--nav-height) + 40px) auto 80px;
+            padding: 0 5%;
+        }
+
+        .privacy-header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding-top: 40px;
+        }
+
+        .privacy-header h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, var(--accent-light), white);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .privacy-header p {
+            color: var(--accent-light);
+            font-size: 1.2rem;
+        }
+
+        .privacy-content {
+            background: rgba(26, 46, 58, 0.7);
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(175, 216, 208, 0.2);
+        }
+
+        .privacy-section {
+            margin-bottom: 40px;
+        }
+
+        .privacy-section h2 {
+            color: var(--accent-light);
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--accent-teal);
+        }
+
+        .privacy-section h3 {
+            color: white;
+            font-size: 1.3rem;
+            margin: 25px 0 15px;
+        }
+
+        .privacy-section p {
+            margin-bottom: 15px;
+        }
+
+        .privacy-section ul {
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+
+        .privacy-section li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 25px;
+            line-height: 1.6;
+        }
+
+        .privacy-section li:before {
+            content: "•";
+            color: var(--accent-teal);
+            font-size: 1.5rem;
+            position: absolute;
+            left: 0;
+            top: -5px;
+        }
+
+        .notice-box {
+            background: rgba(42, 138, 127, 0.1);
+            border-left: 4px solid var(--accent-teal);
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .update-date {
+            font-style: italic;
+            color: var(--accent-light);
+            text-align: right;
+            margin-top: 40px;
+        }
+
+        /* Footer - Same as features.html */
+        footer {
+            background: var(--therapy-dark);
+            padding: 60px 5% 30px;
+            margin-top: auto;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 50px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-light);
+            margin-bottom: 20px;
+        }
+
+        .footer-logo i {
+            font-size: 2rem;
+        }
+
+        .footer-about {
+            color: var(--accent-light);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(175, 216, 208, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-light);
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background-color: var(--accent-teal);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .footer-links h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .footer-link {
+            display: block;
+            color: var(--accent-light);
+            margin-bottom: 15px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .footer-contact h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .contact-info {
+            color: var(--accent-light);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .contact-info i {
+            margin-top: 3px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            margin-top: 40px;
+            border-top: 1px solid rgba(175, 216, 208, 0.1);
+            color: var(--accent-light);
+            font-size: 0.9rem;
+        }
+
+        .copyright {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .privacy-header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .privacy-content {
+                padding: 30px;
+            }
+            
+            .privacy-section h2 {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .privacy-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .nav-logo span {
+                display: none;
+            }
+            
+            .privacy-content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="index.html" class="nav-logo">
+            <i class="fas fa-brain"></i>
+            <span>KHIYALAT</span>
+        </a>
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="features.html" class="nav-link">Features</a>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+            <a href="terms.html" class="nav-link">Terms</a>
+            <a href="privacy-policy.html" class="nav-link active">Privacy</a>
+            <a href="try-now.html" class="nav-link nav-cta">Try Now</a>
+        </div>
+    </nav>
+
+    <!-- Privacy Content -->
+    <div class="privacy-container">
+        <div class="privacy-header">
+            <h1>Privacy Policy</h1>
+            <p>Last Updated: July 15, 2023</p>
+        </div>
+
+        <div class="privacy-content">
+            <div class="notice-box">
+                <p><strong>Important:</strong> This policy explains how we collect, use, and protect your personal information when you use KHIYALAT services.</p>
+            </div>
+
+            <div class="privacy-section">
+                <h2>1. Introduction</h2>
+                <p>KHIYALAT ("we", "us", or "our") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our AI companion services.</p>
+                <p>By using our Service, you consent to the data practices described in this policy. If you do not agree, please do not access or use our Service.</p>
+            </div>
+
+            <div class="privacy-section">
+                <h2>2. Information We Collect</h2>
+                <h3>2.1 Personal Information</h3>
+                <p>We may collect personally identifiable information when you:</p>
+                <ul>
+                    <li>Create an account</li>
+                    <li>Use our AI companion services</li>
+                    <li>Contact our support team</li>
+                    <li>Participate in surveys or feedback</li>
+                </ul>
+                <p>This may include:</p>
+                <ul>
+                    <li>Name and contact information</li>
+                    <li>Account credentials</li>
+                    <li>Payment information (for premium services)</li>
+                    <li>Demographic information</li>
+                </ul>
+                
+                <h3>2.2 Usage Data</h3>
+                <p>We automatically collect information about how you interact with our Service, including:</p>
+                <ul>
+                    <li>Interaction patterns with the AI</li>
+                    <li>Feature usage statistics</li>
+                    <li>Device information (type, OS, browser)</li>
+                    <li>IP address and approximate location</li>
+                    <li>Cookies and similar tracking technologies</li>
+                </ul>
+                
+                <h3>2.3 Sensitive Information</h3>
+                <p>Given the nature of our Service, you may choose to share sensitive personal information during conversations with the AI companion. This data is processed with additional safeguards.</p>
+            </div>
+
+            <div class="privacy-section">
+                <h2>3. How We Use Your Information</h2>
+                <p>We use the information we collect for the following purposes:</p>
+                <ul>
+                    <li>To provide and maintain our Service</li>
+                    <li>To personalize your AI companion experience</li>
+                    <li>To improve and develop our Service</li>
+                    <li>To communicate with you (service updates, support)</li>
+                    <li>To monitor usage and analyze trends</li>
+                    <li>To detect, prevent, and address technical issues</li>
+                    <li>To comply with legal obligations</li>
+                </ul>
+            </div>
+
+            <div class="privacy-section">
+                <h2>4. Data Security</h2>
+                <p>We implement appropriate technical and organizational measures to protect your personal information, including:</p>
+                <ul>
+                    <li>Encryption of data in transit and at rest</li>
+                    <li>Regular security assessments</li>
+                    <li>Access controls and authentication</li>
+                    <li>Secure development practices</li>
+                </ul>
+                <p>However, no method of transmission over the Internet or electronic storage is 100% secure, and we cannot guarantee absolute security.</p>
+            </div>
+
+            <div class="privacy-section">
+                <h2>5. Data Retention</h2>
+                <p>We retain your personal information only for as long as necessary to:</p>
+                <ul>
+                    <li>Provide services to you</li>
+                    <li>Comply with legal obligations</li>
+                    <li>Resolve disputes</li>
+                    <li>Enforce our agreements</li>
+                </ul>
+                <p>You may request deletion of your data as described in Section 7.</p>
+            </div>
+
+            <div class="privacy-section">
+                <h2>6. Data Sharing and Disclosure</h2>
+                <p>We do not sell your personal information. We may share data in these circumstances:</p>
+                <ul>
+                    <li><strong>Service Providers:</strong> With vendors who help operate our Service (under strict confidentiality agreements)</li>
+                    <li><strong>Legal Requirements:</strong> When required by law or to protect our rights</li>
+                    <li><strong>Business Transfers:</strong> In connection with a merger, acquisition, or asset sale</li>
+                    <li><strong>Aggregated Data:</strong> Non-identifiable, aggregated data may be shared for research or analytics</li>
+                </ul>
+            </div>
+
+            <div class="privacy-section">
+                <h2>7. Your Data Rights</h2>
+                <p>Depending on your jurisdiction, you may have rights to:</p>
+                <ul>
+                    <li>Access and receive a copy of your personal data</li>
+                    <li>Rectify inaccurate or incomplete data</li>
+                    <li>Request deletion of your data</li>
+                    <li>Restrict or object to processing</li>
+                    <li>Data portability</li>
+                    <li>Withdraw consent (where processing is based on consent)</li>
+                </ul>
+                <p>To exercise these rights, please contact us at privacy@khilyat.com.</p>
+            </div>
+
+            <div class="privacy-section">
+                <h2>8. International Data Transfers</h2>
+                <p>Your information may be transferred to and maintained on computers located outside of your jurisdiction where data protection laws may differ. We implement appropriate safeguards for such transfers.</p>
+            </div>
+
+            <div class="privacy-section">
+                <h2>9. Children's Privacy</h2>
+                <p>Our Service is not intended for children under 16. We do not knowingly collect personal information from children under 16. If we become aware of such collection, we will take steps to delete the information.</p>
+            </div>
+
+            <div class="privacy-section">
+                <h2>10. Changes to This Policy</h2>
+                <p>We may update this Privacy Policy periodically. We will notify you of significant changes by posting the new policy on our website and updating the "Last Updated" date.</p>
+            </div>
+
+            <div class="privacy-section">
+                <h2>11. Contact Us</h2>
+                <p>For questions about this Privacy Policy or your personal data, please contact us at:</p>
+                <p>
+                    Email: privacy@khilyat.com<br>
+                    Address: Jhelum, Punjab Pakistan
+                </p>
+            </div>
+
+            <p class="update-date">Effective Date: July 15, 2023</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-about-col">
+                <div class="footer-logo">
+                    <i class="fas fa-brain"></i>
+                    <span>KHIYALAT</span>
+                </div>
+                <p class="footer-about">
+                    Khiyalat is an AI psychological companion designed to help you understand and navigate your thoughts
+                    with compassion and insight.
+                </p>
+                <div class="footer-social">
+                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                </div>
+            </div>
+            <div class="footer-links-col">
+                <h3>Quick Links</h3>
+                <a href="index.html" class="footer-link">Home</a>
+                <a href="features.html" class="footer-link">Features</a>
+                <a href="about.html" class="footer-link">About</a>
+                <a href="contact.html" class="footer-link">Contact</a>
+                <a href="try-now.html" class="footer-link">Try Now</a>
+            </div>
+            <div class="footer-links-col">
+                <h3>Resources</h3>
+                <a href="blog.html" class="footer-link">Blog</a>
+                <a href="contact.html" class="footer-link">Help Center</a>
+                <a href="privacy-policy.html" class="footer-link active">Privacy Policy</a>
+                <a href="termsofservice.html" class="footer-link">Terms of Service</a>
+                <a href="research.html" class="footer-link">Research</a>
+            </div>
+            <div class="footer-contact-col">
+                <h3>Contact Us</h3>
+                <div class="contact-info">
+                    <i class="fas fa-envelope"></i>
+                    <span>ininsico@gmail.com</span>
+                </div>
+                <div class="contact-info">
+                    <i class="fas fa-phone-alt"></i>
+                    <span>+923315821144</span>
+                </div>
+                <div class="contact-info">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Jhelum, Punjab Pakistan</span>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="copyright">
+                <i class="far fa-copyright"></i>
+                <span>2023 KHIYALAT. All rights reserved.</span>
+            </div>
+            <p>AI does not replace professional medical advice. If in crisis, please contact emergency services.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navigation active state
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === currentPage) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

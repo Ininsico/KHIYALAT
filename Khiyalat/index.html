@@ -17,16 +17,16 @@
 
     <!-- Navigation -->
     <nav>
-        <a href="#" class="nav-logo">
+        <a href="index.html" class="nav-logo">
             <i class="fas fa-brain"></i>
             <span>KHIYALAT</span>
         </a>
         <div class="nav-links">
-            <a href="#" class="nav-link">Home</a>
-            <a href="#" class="nav-link">Features</a>
-            <a href="#" class="nav-link">About</a>
-            <a href="#" class="nav-link">Contact</a>
-            <a href="#" class="nav-link nav-cta">Try Now</a>
+            <a href="index.html" class="nav-link active">Home</a>
+            <a href="features.html" class="nav-link">Features</a>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+            <a href="try-now.html" class="nav-link nav-cta">Try Now</a>
         </div>
     </nav>
 
@@ -38,12 +38,12 @@
                 <p class="hero-subtitle">Khiyalat helps you understand and navigate your thoughts with compassionate AI
                     that's available whenever you need support.</p>
                 <div class="hero-cta">
-                    <button class="btn-primary">
+                    <a href="try-now.html" class="btn-primary">
                         <i class="fas fa-comment-dots"></i> Start Talking
-                    </button>
-                    <button class="btn-secondary">
+                    </a>
+                    <a href="features.html" class="btn-secondary">
                         Learn More
-                    </button>
+                    </a>
                 </div>
             </div>
             <div class="hero-image">
@@ -114,9 +114,9 @@
                         <p class="demo-feature-text">Adapts to your unique communication style</p>
                     </div>
                 </div>
-                <button class="btn-primary">
+                <a href="try-now.html" class="btn-primary">
                     <i class="fas fa-robot"></i> Try Demo
-                </button>
+                </a>
             </div>
             <div class="demo-visual" id="demoVisual">
                 <div class="chat-demo">
@@ -206,7 +206,9 @@
                 </div>
             </div>
         </div>
-    </section <!-- CTA Section -->
+    </section>
+
+    <!-- CTA Section -->
     <section class="cta">
         <div class="cta-container" id="ctaContainer">
             <h2 class="cta-title">Ready to Explore Your Thoughts?</h2>
@@ -215,9 +217,9 @@
                 support.
                 Start your journey to better wellbeing today.
             </p>
-            <button class="btn-primary">
+            <a href="try-now.html" class="btn-primary">
                 <i class="fas fa-user-plus"></i> Get Started for Free
-            </button>
+            </a>
         </div>
     </section>
 
@@ -242,19 +244,19 @@
             </div>
             <div class="footer-links-col">
                 <h3>Quick Links</h3>
-                <a href="#" class="footer-link">Home</a>
-                <a href="#" class="footer-link">Features</a>
-                <a href="#" class="footer-link">How It Works</a>
-                <a href="#" class="footer-link">Free To Use</a>
-                <a href="#" class="footer-link">Testimonials</a>
+                <a href="index.html" class="footer-link">Home</a>
+                <a href="features.html" class="footer-link">Features</a>
+                <a href="about.html" class="footer-link">About</a>
+                <a href="contact.html" class="footer-link">Contact</a>
+                <a href="try-now.html" class="footer-link">Try Now</a>
             </div>
             <div class="footer-links-col">
                 <h3>Resources</h3>
-                <a href="#" class="footer-link">Blog</a>
-                <a href="#" class="footer-link">Help Center</a>
-                <a href="#" class="footer-link">Privacy Policy</a>
-                <a href="#" class="footer-link">Terms of Service</a>
-                <a href="#" class="footer-link">Research</a>
+                <a href="blog.html" class="footer-link">Blog</a>
+                <a href="contact.html" class="footer-link">Help Center</a>
+                <a href="Privacy-policy.html" class="footer-link">Privacy Policy</a>
+                <a href="termsofservice.html" class="footer-link">Terms of Service</a>
+                <a href="research.html" class="footer-link">Research</a>
             </div>
             <div class="footer-contact-col">
                 <h3>Contact Us</h3>
@@ -273,7 +275,7 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2023 KHIYALAT. All rights reserved. AI does not replace professional advice.</p>
+            <p>&copy; 2025 KHIYALAT. All rights reserved. AI does not replace professional advice.</p>
         </div>
     </footer>
 
@@ -348,6 +350,16 @@
 
                 setTimeout(addMessage, 3000);
             }
+
+            // Set active navigation link
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            document.querySelectorAll('.nav-link').forEach(link => {
+                if (link.getAttribute('href') === currentPage) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
         });
 
         // Navbar scroll effect
@@ -363,5 +375,4 @@
         });
     </script>
 </body>
-
 </html>

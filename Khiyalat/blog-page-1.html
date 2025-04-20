@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How AI Companions Are Revolutionizing Self-Care | KHIYALAT Blog</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+            :root {
+            --therapy-dark: #1a2e3a;
+            --therapy-medium: #2a3b46;
+            --therapy-light: #3a4a55;
+            --accent-teal: #2a8a7f;
+            --accent-light: #afd8d0;
+            --text-light: #e0f0ea;
+            --nav-height: 80px;
+        }
+
+        /* Base Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--therapy-medium) 0%, var(--therapy-dark) 100%);
+            color: var(--text-light);
+            min-height: 100vh;
+            margin: 0;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--nav-height);
+            background: rgba(26, 46, 58, 0.98);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 5%;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+            box-sizing: border-box;
+        }
+
+        .nav-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent-light);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            white-space: nowrap;
+        }
+
+        .nav-logo i {
+            font-size: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            position: relative;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-teal);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-light);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link.active {
+            color: var(--accent-light);
+            font-weight: 600;
+        }
+
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            background-color: var(--accent-teal);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            white-space: nowrap;
+        }
+
+        .nav-cta:hover {
+            background-color: #1d6a60;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(42, 138, 127, 0.4);
+        }
+
+        /* Blog Hero Section */
+        .blog-hero {
+            padding: calc(var(--nav-height) + 60px) 5% 80px;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(42, 138, 127, 0.1) 0%, transparent 100%);
+            border-bottom: 1px solid rgba(175, 216, 208, 0.1);
+        }
+
+        .blog-hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, var(--accent-light), white);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .blog-hero p {
+            font-size: 1.2rem;
+            color: var(--accent-light);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Blog Container */
+        .blog-container {
+            display: flex;
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 5%;
+            gap: 40px;
+        }
+
+        /* Main Blog Content */
+        .blog-main {
+            flex: 2;
+        }
+
+        /* Blog Posts */
+        .blog-post {
+            background: rgba(26, 46, 58, 0.7);
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(175, 216, 208, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .blog-post:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            border-color: rgba(42, 138, 127, 0.3);
+        }
+
+        .post-image {
+            height: 300px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .post-content {
+            padding: 30px;
+        }
+
+        .post-category {
+            display: inline-block;
+            background-color: rgba(42, 138, 127, 0.2);
+            color: var(--accent-teal);
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .post-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: white;
+            line-height: 1.4;
+        }
+
+        .post-meta {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            color: var(--accent-light);
+            font-size: 0.9rem;
+        }
+
+        .post-meta i {
+            margin-right: 5px;
+        }
+
+        .post-excerpt {
+            color: var(--accent-light);
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        .read-more {
+            display: inline-block;
+            background-color: var(--accent-teal);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .read-more:hover {
+            background-color: #1d6a60;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(42, 138, 127, 0.4);
+        }
+
+        /* Blog Sidebar */
+        .blog-sidebar {
+            flex: 1;
+        }
+
+        .sidebar-widget {
+            background: rgba(26, 46, 58, 0.7);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(175, 216, 208, 0.1);
+        }
+
+        .widget-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: white;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .widget-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--accent-teal);
+        }
+
+        /* Categories Widget */
+        .categories-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .categories-list li {
+            margin-bottom: 12px;
+        }
+
+        .categories-list a {
+            color: var(--accent-light);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: block;
+            padding: 8px 0;
+            position: relative;
+        }
+
+        .categories-list a::before {
+            content: '\f054';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            font-size: 0.7rem;
+            margin-right: 10px;
+            color: var(--accent-teal);
+        }
+
+        .categories-list a:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+
+        /* Popular Posts Widget */
+        .popular-post {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(175, 216, 208, 0.1);
+        }
+
+        .popular-post:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .popular-post a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            display: block;
+            margin-bottom: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .popular-post a:hover {
+            color: var(--accent-teal);
+        }
+
+        .popular-post span {
+            color: var(--accent-light);
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* Newsletter Widget */
+        .newsletter-form input {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 50px;
+            border: none;
+            background-color: rgba(175, 216, 208, 0.1);
+            color: white;
+            margin-bottom: 15px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .newsletter-form input::placeholder {
+            color: var(--accent-light);
+        }
+
+        .newsletter-form button {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 50px;
+            border: none;
+            background-color: var(--accent-teal);
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .newsletter-form button:hover {
+            background-color: #1d6a60;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(42, 138, 127, 0.4);
+        }
+
+        /* Tags Widget */
+        .tags-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tag {
+            display: inline-block;
+            background-color: rgba(42, 138, 127, 0.2);
+            color: var(--accent-teal);
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .tag:hover {
+            background-color: var(--accent-teal);
+            color: white;
+        }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 50px;
+        }
+
+        .pagination a {
+            color: var(--accent-light);
+            text-decoration: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .pagination a:hover, .pagination a.active {
+            background-color: var(--accent-teal);
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--therapy-dark);
+            padding: 60px 5% 30px;
+            margin-top: auto;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 50px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-light);
+            margin-bottom: 20px;
+        }
+
+        .footer-logo i {
+            font-size: 2rem;
+        }
+
+        .footer-about {
+            color: var(--accent-light);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(175, 216, 208, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-light);
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background-color: var(--accent-teal);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .footer-links h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .footer-link {
+            display: block;
+            color: var(--accent-light);
+            margin-bottom: 15px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .footer-contact h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .contact-info {
+            color: var(--accent-light);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .contact-info i {
+            margin-top: 3px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            margin-top: 40px;
+            border-top: 1px solid rgba(175, 216, 208, 0.1);
+            color: var(--accent-light);
+            font-size: 0.9rem;
+        }
+
+        .copyright {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .blog-container {
+                flex-direction: column;
+            }
+            
+            .blog-sidebar {
+                order: -1;
+                margin-bottom: 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .blog-hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .blog-hero p {
+                font-size: 1rem;
+            }
+            
+            .post-title {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .blog-hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .nav-logo span {
+                display: none;
+            }
+            
+            .post-meta {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+        }
+
+        /* Additional styles for single post page */
+        .post-header {
+            padding: calc(var(--nav-height) + 60px) 5% 60px;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(42, 138, 127, 0.1) 0%, transparent 100%);
+        }
+
+        .post-header .post-category {
+            display: inline-block;
+            background-color: rgba(42, 138, 127, 0.2);
+            color: var(--accent-teal);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .post-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: white;
+            line-height: 1.3;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .post-header .post-meta {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            color: var(--accent-light);
+            margin-bottom: 30px;
+        }
+
+        .post-header .post-meta span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .featured-image {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin: 40px auto;
+            display: block;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .post-content-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 5% 80px;
+        }
+
+        .post-content {
+            color: var(--text-light);
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        .post-content h2 {
+            font-size: 1.8rem;
+            color: white;
+            margin-top: 50px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .post-content h3 {
+            font-size: 1.4rem;
+            color: var(--accent-light);
+            margin-top: 40px;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .post-content p {
+            margin-bottom: 25px;
+        }
+
+        .post-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 30px 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .post-content blockquote {
+            border-left: 4px solid var(--accent-teal);
+            padding-left: 20px;
+            margin: 30px 0;
+            font-style: italic;
+            color: var(--accent-light);
+        }
+
+        .post-content ul, .post-content ol {
+            margin-bottom: 25px;
+            padding-left: 20px;
+        }
+
+        .post-content li {
+            margin-bottom: 10px;
+        }
+
+        .post-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 50px 0;
+        }
+
+        .post-tags a {
+            display: inline-block;
+            background-color: rgba(42, 138, 127, 0.2);
+            color: var(--accent-teal);
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .post-tags a:hover {
+            background-color: var(--accent-teal);
+            color: white;
+        }
+
+        .author-box {
+            background: rgba(26, 46, 58, 0.7);
+            border-radius: 15px;
+            padding: 30px;
+            display: flex;
+            gap: 20px;
+            margin: 60px 0;
+            align-items: center;
+            border: 1px solid rgba(175, 216, 208, 0.1);
+        }
+
+        .author-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--accent-teal);
+        }
+
+        .author-info h3 {
+            margin: 0 0 10px;
+            color: white;
+        }
+
+        .author-info p {
+            color: var(--accent-light);
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .author-social {
+            display: flex;
+            gap: 10px;
+        }
+
+        .author-social a {
+            color: var(--accent-light);
+            transition: all 0.3s ease;
+        }
+
+        .author-social a:hover {
+            color: var(--accent-teal);
+        }
+
+        .post-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 60px;
+            border-top: 1px solid rgba(175, 216, 208, 0.1);
+            padding-top: 40px;
+        }
+
+        .nav-previous, .nav-next {
+            flex: 1;
+        }
+
+        .nav-next {
+            text-align: right;
+        }
+
+        .nav-previous a, .nav-next a {
+            color: var(--accent-light);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+            max-width: 300px;
+        }
+
+        .nav-previous a:hover, .nav-next a:hover {
+            color: white;
+        }
+
+        .nav-label {
+            font-size: 0.9rem;
+            color: var(--accent-teal);
+            margin-bottom: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .post-header h1 {
+                font-size: 2rem;
+            }
+            
+            .featured-image {
+                height: 300px;
+            }
+            
+            .author-box {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .post-navigation {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            .nav-next {
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="index.html" class="nav-logo">
+            <i class="fas fa-brain"></i>
+            <span>KHIYALAT</span>
+        </a>
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="features.html" class="nav-link">Features</a>
+            <a href="blog.html" class="nav-link active">Blog</a>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+            <a href="try-now.html" class="nav-link nav-cta">Try Now</a>
+        </div>
+    </nav>
+
+    <!-- Post Header -->
+    <header class="post-header">
+        <span class="post-category">AI & Mental Health</span>
+        <h1>How AI Companions Are Revolutionizing Self-Care</h1>
+        <div class="post-meta">
+            <span><i class="far fa-user"></i> By KHIYALAT Team</span>
+            <span><i class="far fa-calendar"></i> June 15, 2023</span>
+            <span><i class="far fa-clock"></i> 8 min read</span>
+        </div>
+    </header>
+
+    <!-- Post Content -->
+    <div class="post-content-container">
+        <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80" alt="AI Therapy" class="featured-image">
+
+        <article class="post-content">
+            <p>The landscape of mental health support is undergoing a seismic shift with the advent of advanced AI companions like KHIYALAT. What began as simple chatbots has evolved into sophisticated emotional support systems that are changing how millions approach self-care.</p>
+
+            <h2>The New Era of Digital Therapy</h2>
+            
+            <p>Traditional therapy, while effective, faces significant barriers including cost, availability, and social stigma. Our research shows that 65% of potential therapy seekers never take the first step due to these obstacles. AI companions bridge this gap by providing:</p>
+            
+            <ul>
+                <li><strong>24/7 availability</strong> - Support whenever needed</li>
+                <li><strong>Non-judgmental interaction</strong> - Zero social stigma</li>
+                <li><strong>Personalized approaches</strong> - Adaptive to individual needs</li>
+                <li><strong>Proactive care</strong> - Identifies patterns before crises emerge</li>
+            </ul>
+            
+            <img src="https://images.unsplash.com/photo-1579762715118-a6f1d4b934f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="AI Therapy Research">
+            
+            <h2>How KHIYALAT's Technology Works</h2>
+            
+            <p>Unlike rule-based chatbots of the past, KHIYALAT employs a multi-layered AI architecture:</p>
+            
+            <h3>1. Emotional Recognition Layer</h3>
+            <p>Using advanced NLP, we analyze text for 47 emotional indicators beyond simple sentiment analysis. This detects subtle cues humans might miss.</p>
+            
+            <h3>2. Contextual Understanding Engine</h3>
+            <p>Our proprietary context engine maintains conversation history and connects related thoughts across sessions.</p>
+            
+            <blockquote>
+                "The ability to remember and connect disparate thoughts over time is what sets therapeutic AI apart from simple chatbots."<br>
+                — Dr. Elena Rodriguez, Chief Psychology Officer
+            </blockquote>
+            
+            <h3>3. Response Generation System</h3>
+            <p>Combining CBT techniques with machine learning, we generate responses that are both clinically sound and uniquely tailored.</p>
+            
+            <h2>Real-World Impact</h2>
+            
+            <p>In our 6-month beta trial with 1,200 users:</p>
+            
+            <ul>
+                <li>78% reported improved emotional awareness</li>
+                <li>62% experienced reduced anxiety symptoms</li>
+                <li>84% said they were more likely to seek professional help when needed</li>
+            </ul>
+            
+            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="AI Therapy Results">
+            
+            <h2>The Future of AI Companions</h2>
+            
+            <p>We're currently developing three groundbreaking features:</p>
+            
+            <ol>
+                <li><strong>Voice tone analysis</strong> - Detecting emotional states from speech patterns</li>
+                <li><strong>Predictive interventions</strong> - Anticipating emotional downturns before they occur</li>
+                <li><strong>Group support systems</strong> - Facilitating AI-moderated support circles</li>
+            </ol>
+            
+            <p>As these technologies mature, AI companions will become an integral part of global mental health ecosystems, working alongside human professionals to deliver comprehensive care.</p>
+            
+            <div class="post-tags">
+                <a href="#">#AITherapy</a>
+                <a href="#">#MentalHealthTech</a>
+                <a href="#">#DigitalWellbeing</a>
+                <a href="#">#KHIYALAT</a>
+            </div>
+            
+            <div class="author-box">
+                <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="KHIYALAT Team" class="author-avatar">
+                <div class="author-info">
+                    <h3>KHIYALAT Team</h3>
+                    <p>Our interdisciplinary team combines expertise in artificial intelligence, clinical psychology, and user experience design to create compassionate digital companions.</p>
+                    <div class="author-social">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fas fa-globe"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="post-navigation">
+                <div class="nav-previous">
+                    <span class="nav-label">Previous Post</span>
+                    <a href="post-mindfulness.html">5 Mindfulness Techniques Enhanced by AI</a>
+                </div>
+                <div class="nav-next">
+                    <span class="nav-label">Next Post</span>
+                    <a href="post-ethics.html">The Ethics of Emotional AI: KHIYALAT's Approach</a>
+                </div>
+            </div>
+        </article>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-about-col">
+                <div class="footer-logo">
+                    <i class="fas fa-brain"></i>
+                    <span>KHIYALAT</span>
+                </div>
+                <p class="footer-about">
+                    KHIYALAT is an AI psychological companion designed to help you understand and navigate your thoughts
+                    with compassion and insight.
+                </p>
+                <div class="footer-social">
+                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                </div>
+            </div>
+            <div class="footer-links-col">
+                <h3>Quick Links</h3>
+                <a href="index.html" class="footer-link">Home</a>
+                <a href="features.html" class="footer-link">Features</a>
+                <a href="blog.html" class="footer-link">Blog</a>
+                <a href="about.html" class="footer-link">About</a>
+                <a href="contact.html" class="footer-link">Contact</a>
+                <a href="try-now.html" class="footer-link">Try Now</a>
+            </div>
+            <div class="footer-links-col">
+                <h3>Resources</h3>
+                <a href="contact.html" class="footer-link">Help Center</a>
+                <a href="Privacy-policy.html" class="footer-link">Privacy Policy</a>
+                <a href="termsofservice.html" class="footer-link">Terms of Service</a>
+                <a href="research.html" class="footer-link">Research</a>
+                <a href="Privacy-policy.html" class="footer-link">FAQ</a>
+            </div>
+            <div class="footer-contact-col">
+                <h3>Contact Us</h3>
+                <div class="contact-info">
+                    <i class="fas fa-envelope"></i>
+                    <span>ininsico@gmail.com</span>
+                </div>
+                <div class="contact-info">
+                    <i class="fas fa-phone-alt"></i>
+                    <span>+923315821144</span>
+                </div>
+                <div class="contact-info">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Jhelum, Punjab Pakistan</span>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="copyright">
+                <i class="far fa-copyright"></i>
+                <span>2023 KHIYALAT. All rights reserved.</span>
+            </div>
+            <p>AI does not replace professional medical advice. If in crisis, please contact emergency services.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Simple script to highlight current page in navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === currentPage) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
