@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | KHIYALAT - AI Companion</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --therapy-dark: #1a2e3a;
+            --therapy-medium: #2a3b46;
+            --therapy-light: #3a4a55;
+            --accent-teal: #2a8a7f;
+            --accent-light: #afd8d0;
+            --text-light: #e0f0ea;
+            --nav-height: 80px;
+        }
+
+        /* Base Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--therapy-medium) 0%, var(--therapy-dark) 100%);
+            color: var(--text-light);
+            min-height: 100vh;
+            margin: 0;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--nav-height);
+            background: rgba(26, 46, 58, 0.98);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 5%;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+            box-sizing: border-box;
+        }
+
+        .nav-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent-light);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            white-space: nowrap;
+        }
+
+        .nav-logo i {
+            font-size: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            position: relative;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-teal);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-light);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link.active {
+            color: var(--accent-light);
+            font-weight: 600;
+        }
+
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            background-color: var(--accent-teal);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            white-space: nowrap;
+        }
+
+        .nav-cta:hover {
+            background-color: #1d6a60;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(42, 138, 127, 0.4);
+        }
+
+        /* Blog Hero Section */
+        .blog-hero {
+            padding: calc(var(--nav-height) + 60px) 5% 80px;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(42, 138, 127, 0.1) 0%, transparent 100%);
+            border-bottom: 1px solid rgba(175, 216, 208, 0.1);
+        }
+
+        .blog-hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, var(--accent-light), white);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .blog-hero p {
+            font-size: 1.2rem;
+            color: var(--accent-light);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Blog Container */
+        .blog-container {
+            display: flex;
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 5%;
+            gap: 40px;
+        }
+
+        /* Main Blog Content */
+        .blog-main {
+            flex: 2;
+        }
+
+        /* Blog Posts */
+        .blog-post {
+            background: rgba(26, 46, 58, 0.7);
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(175, 216, 208, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .blog-post:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            border-color: rgba(42, 138, 127, 0.3);
+        }
+
+        .post-image {
+            height: 300px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .post-content {
+            padding: 30px;
+        }
+
+        .post-category {
+            display: inline-block;
+            background-color: rgba(42, 138, 127, 0.2);
+            color: var(--accent-teal);
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .post-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: white;
+            line-height: 1.4;
+        }
+
+        .post-meta {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            color: var(--accent-light);
+            font-size: 0.9rem;
+        }
+
+        .post-meta i {
+            margin-right: 5px;
+        }
+
+        .post-excerpt {
+            color: var(--accent-light);
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        .read-more {
+            display: inline-block;
+            background-color: var(--accent-teal);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .read-more:hover {
+            background-color: #1d6a60;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(42, 138, 127, 0.4);
+        }
+
+        /* Blog Sidebar */
+        .blog-sidebar {
+            flex: 1;
+        }
+
+        .sidebar-widget {
+            background: rgba(26, 46, 58, 0.7);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(175, 216, 208, 0.1);
+        }
+
+        .widget-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: white;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .widget-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--accent-teal);
+        }
+
+        /* Categories Widget */
+        .categories-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .categories-list li {
+            margin-bottom: 12px;
+        }
+
+        .categories-list a {
+            color: var(--accent-light);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: block;
+            padding: 8px 0;
+            position: relative;
+        }
+
+        .categories-list a::before {
+            content: '\f054';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            font-size: 0.7rem;
+            margin-right: 10px;
+            color: var(--accent-teal);
+        }
+
+        .categories-list a:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+
+        /* Popular Posts Widget */
+        .popular-post {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(175, 216, 208, 0.1);
+        }
+
+        .popular-post:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .popular-post a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            display: block;
+            margin-bottom: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .popular-post a:hover {
+            color: var(--accent-teal);
+        }
+
+        .popular-post span {
+            color: var(--accent-light);
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* Newsletter Widget */
+        .newsletter-form input {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 50px;
+            border: none;
+            background-color: rgba(175, 216, 208, 0.1);
+            color: white;
+            margin-bottom: 15px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .newsletter-form input::placeholder {
+            color: var(--accent-light);
+        }
+
+        .newsletter-form button {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 50px;
+            border: none;
+            background-color: var(--accent-teal);
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .newsletter-form button:hover {
+            background-color: #1d6a60;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(42, 138, 127, 0.4);
+        }
+
+        /* Tags Widget */
+        .tags-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tag {
+            display: inline-block;
+            background-color: rgba(42, 138, 127, 0.2);
+            color: var(--accent-teal);
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .tag:hover {
+            background-color: var(--accent-teal);
+            color: white;
+        }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 50px;
+        }
+
+        .pagination a {
+            color: var(--accent-light);
+            text-decoration: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .pagination a:hover, .pagination a.active {
+            background-color: var(--accent-teal);
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--therapy-dark);
+            padding: 60px 5% 30px;
+            margin-top: auto;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 50px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-light);
+            margin-bottom: 20px;
+        }
+
+        .footer-logo i {
+            font-size: 2rem;
+        }
+
+        .footer-about {
+            color: var(--accent-light);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(175, 216, 208, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-light);
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background-color: var(--accent-teal);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .footer-links h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .footer-link {
+            display: block;
+            color: var(--accent-light);
+            margin-bottom: 15px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .footer-contact h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .contact-info {
+            color: var(--accent-light);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .contact-info i {
+            margin-top: 3px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            margin-top: 40px;
+            border-top: 1px solid rgba(175, 216, 208, 0.1);
+            color: var(--accent-light);
+            font-size: 0.9rem;
+        }
+
+        .copyright {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .blog-container {
+                flex-direction: column;
+            }
+            
+            .blog-sidebar {
+                order: -1;
+                margin-bottom: 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .blog-hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .blog-hero p {
+                font-size: 1rem;
+            }
+            
+            .post-title {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .blog-hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .nav-logo span {
+                display: none;
+            }
+            
+            .post-meta {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="index.html" class="nav-logo">
+            <i class="fas fa-brain"></i>
+            <span>KHIYALAT</span>
+        </a>
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="features.html" class="nav-link">Features</a>
+            <a href="blog.html" class="nav-link active">Blog</a>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+            <a href="try-now.html" class="nav-link nav-cta">Try Now</a>
+        </div>
+    </nav>
+
+    <!-- Blog Hero Section -->
+    <section class="blog-hero">
+        <h1>KHIYALAT Insights</h1>
+        <p>Discover articles on mental wellness, AI technology, and personal growth from our team of experts</p>
+    </section>
+
+    <!-- Blog Container -->
+    <div class="blog-container">
+        <!-- Main Blog Content -->
+        <main class="blog-main">
+            <!-- Blog Post 1 -->
+            <article class="blog-post">
+                <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="AI Therapy" class="post-image">
+                <div class="post-content">
+                    <span class="post-category">AI & Mental Health</span>
+                    <h2 class="post-title">How AI Companions Are Revolutionizing Self-Care</h2>
+                    <div class="post-meta">
+                        <span><i class="far fa-user"></i> By KHIYALAT Team</span>
+                        <span><i class="far fa-calendar"></i> June 15, 2023</span>
+                        <span><i class="far fa-comments"></i> 12 Comments</span>
+                    </div>
+                    <p class="post-excerpt">
+                        Explore the science behind AI-assisted therapy and how tools like KHIYALAT are making mental wellness support more accessible than ever before. Learn about the algorithms that power compassionate digital companions...
+                    </p>
+                    <a href="blog-page-1.html" class="read-more">Read More</a>
+                </div>
+            </article>
+
+            <!-- Blog Post 2 -->
+            <article class="blog-post">
+                <img src="https://images.unsplash.com/photo-1545205597-3d9d02c29597?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Mindfulness" class="post-image">
+                <div class="post-content">
+                    <span class="post-category">Mindfulness</span>
+                    <h2 class="post-title">5 Mindfulness Techniques Enhanced by AI</h2>
+                    <div class="post-meta">
+                        <span><i class="far fa-user"></i> By Dr. Sarah Johnson</span>
+                        <span><i class="far fa-calendar"></i> May 28, 2023</span>
+                        <span><i class="far fa-comments"></i> 8 Comments</span>
+                    </div>
+                    <p class="post-excerpt">
+                        Discover how combining traditional mindfulness practices with AI guidance can deepen your meditation experience. KHIYALAT's adaptive techniques help you achieve greater focus and emotional balance...
+                    </p>
+                    <a href="blog-single.html" class="read-more">Read More</a>
+                </div>
+            </article>
+
+            <!-- Blog Post 3 -->
+            <article class="blog-post">
+                <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="AI Ethics" class="post-image">
+                <div class="post-content">
+                    <span class="post-category">Technology</span>
+                    <h2 class="post-title">The Ethics of Emotional AI: KHIYALAT's Approach</h2>
+                    <div class="post-meta">
+                        <span><i class="far fa-user"></i> By David Chen</span>
+                        <span><i class="far fa-calendar"></i> April 10, 2023</span>
+                        <span><i class="far fa-comments"></i> 15 Comments</span>
+                    </div>
+                    <p class="post-excerpt">
+                        How we ensure our AI companion maintains the highest ethical standards while providing compassionate support. Learn about our privacy protocols, bias mitigation strategies, and user empowerment philosophy...
+                    </p>
+                    <a href="blog-single.html" class="read-more">Read More</a>
+                </div>
+            </article>
+
+            <!-- Pagination -->
+            <div class="pagination">
+                <a href="#">&laquo;</a>
+                <a href="#" class="active">1</a>
+                <a href="#">2</a>
+                <a href="#">3</a>
+                <a href="#">&raquo;</a>
+            </div>
+        </main>
+
+        <!-- Blog Sidebar -->
+        <aside class="blog-sidebar">
+            <!-- Search Widget -->
+            <div class="sidebar-widget">
+                <h3 class="widget-title">Search</h3>
+                <form class="search-form">
+                    <input type="text" placeholder="Search articles...">
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                </form>
+            </div>
+
+            <!-- Categories Widget -->
+            <div class="sidebar-widget">
+                <h3 class="widget-title">Categories</h3>
+                <ul class="categories-list">
+                    <li><a href="#">AI & Mental Health (12)</a></li>
+                    <li><a href="#">Mindfulness (8)</a></li>
+                    <li><a href="#">Technology (6)</a></li>
+                    <li><a href="#">User Stories (9)</a></li>
+                    <li><a href="#">Research (5)</a></li>
+                </ul>
+            </div>
+
+            <!-- Popular Posts Widget -->
+            <div class="sidebar-widget">
+                <h3 class="widget-title">Popular Posts</h3>
+                <div class="popular-post">
+                    <a href="#">How AI Companions Are Revolutionizing Self-Care</a>
+                    <span><i class="far fa-calendar"></i> June 15, 2023</span>
+                </div>
+                <div class="popular-post">
+                    <a href="#">5 Mindfulness Techniques Enhanced by AI</a>
+                    <span><i class="far fa-calendar"></i> May 28, 2023</span>
+                </div>
+                <div class="popular-post">
+                    <a href="#">Understanding Anxiety Through AI Analysis</a>
+                    <span><i class="far fa-calendar"></i> April 22, 2023</span>
+                </div>
+            </div>
+
+            <!-- Newsletter Widget -->
+            <div class="sidebar-widget">
+                <h3 class="widget-title">Newsletter</h3>
+                <p>Subscribe to get mental wellness tips and updates</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email address">
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+
+            <!-- Tags Widget -->
+            <div class="sidebar-widget">
+                <h3 class="widget-title">Tags</h3>
+                <div class="tags-container">
+                    <a href="#" class="tag">AI</a>
+                    <a href="#" class="tag">Mental Health</a>
+                    <a href="#" class="tag">Therapy</a>
+                    <a href="#" class="tag">Mindfulness</a>
+                    <a href="#" class="tag">Technology</a>
+                    <a href="#" class="tag">Self-Care</a>
+                    <a href="#" class="tag">Wellness</a>
+                    <a href="#" class="tag">CBT</a>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-about-col">
+                <div class="footer-logo">
+                    <i class="fas fa-brain"></i>
+                    <span>KHIYALAT</span>
+                </div>
+                <p class="footer-about">
+                    KHIYALAT is an AI psychological companion designed to help you understand and navigate your thoughts
+                    with compassion and insight.
+                </p>
+                <div class="footer-social">
+                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                </div>
+            </div>
+            <div class="footer-links-col">
+                <h3>Quick Links</h3>
+                <a href="index.html" class="footer-link">Home</a>
+                <a href="features.html" class="footer-link">Features</a>
+                <a href="blog.html" class="footer-link">Blog</a>
+                <a href="about.html" class="footer-link">About</a>
+                <a href="contact.html" class="footer-link">Contact</a>
+                <a href="try-now.html" class="footer-link">Try Now</a>
+            </div>
+            <div class="footer-links-col">
+                <h3>Resources</h3>
+                <a href="contact.html" class="footer-link">Help Center</a>
+                <a href="Privacy-policy.html" class="footer-link">Privacy Policy</a>
+                <a href="termsofservice.html" class="footer-link">Terms of Service</a>
+                <a href="research.html" class="footer-link">Research</a>
+                <a href="Privacy-policy.html" class="footer-link">FAQ</a>
+            </div>
+            <div class="footer-contact-col">
+                <h3>Contact Us</h3>
+                <div class="contact-info">
+                    <i class="fas fa-envelope"></i>
+                    <span>ininsico@gmail.com</span>
+                </div>
+                <div class="contact-info">
+                    <i class="fas fa-phone-alt"></i>
+                    <span>+923315821144</span>
+                </div>
+                <div class="contact-info">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Jhelum, Punjab Pakistan</span>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="copyright">
+                <i class="far fa-copyright"></i>
+                <span>2023 KHIYALAT. All rights reserved.</span>
+            </div>
+            <p>AI does not replace professional medical advice. If in crisis, please contact emergency services.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Simple script to highlight current page in navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === currentPage) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

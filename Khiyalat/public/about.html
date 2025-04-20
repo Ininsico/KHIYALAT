@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | KHIYALAT - AI Companion</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --therapy-dark: #1a2e3a;
+            --therapy-medium: #2a3b46;
+            --therapy-light: #3a4a55;
+            --accent-teal: #2a8a7f;
+            --accent-light: #afd8d0;
+            --text-light: #e0f0ea;
+            --nav-height: 80px;
+        }
+
+        /* Base Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--therapy-medium) 0%, var(--therapy-dark) 100%);
+            color: var(--text-light);
+            min-height: 100vh;
+            margin: 0;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--nav-height);
+            background: rgba(26, 46, 58, 0.98);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 5%;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+            box-sizing: border-box;
+        }
+
+        .nav-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent-light);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            white-space: nowrap;
+        }
+
+        .nav-logo i {
+            font-size: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            position: relative;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-teal);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-light);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link.active {
+            color: var(--accent-light);
+            font-weight: 600;
+        }
+
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            background-color: var(--accent-teal);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            white-space: nowrap;
+        }
+
+        .nav-cta:hover {
+            background-color: #1d6a60;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(42, 138, 127, 0.4);
+        }
+
+        /* About Hero Section */
+        .about-hero {
+            position: relative;
+            padding: calc(var(--nav-height) + 80px) 5% 100px;
+            text-align: center;
+            background: radial-gradient(circle at 70% 30%, rgba(42, 138, 127, 0.1) 0%, transparent 50%);
+        }
+
+        .about-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, var(--accent-light), white);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .about-subtitle {
+            font-size: 1.3rem;
+            color: var(--accent-light);
+            max-width: 800px;
+            margin: 0 auto 50px;
+            line-height: 1.6;
+            animation: fadeInUp 0.8s 0.2s ease-out forwards;
+            opacity: 0;
+        }
+
+        /* Creator Profile */
+        .creator-profile {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 5%;
+            animation: fadeInUp 0.8s 0.4s ease-out forwards;
+            opacity: 0;
+        }
+
+        .creator-image {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--accent-teal);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .creator-details {
+            text-align: left;
+            max-width: 600px;
+        }
+
+        .creator-name {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: white;
+        }
+
+        .creator-title {
+            font-size: 1.2rem;
+            color: var(--accent-teal);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .creator-bio {
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+
+        .education-item {
+            margin-bottom: 20px;
+            padding-left: 25px;
+            border-left: 3px solid var(--accent-teal);
+        }
+
+        .education-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Mission Section */
+        .mission-section {
+            background: rgba(26, 46, 58, 0.7);
+            backdrop-filter: blur(12px);
+            border-radius: 20px;
+            padding: 60px;
+            max-width: 1200px;
+            margin: 50px auto;
+            border: 1px solid rgba(175, 216, 208, 0.2);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 0.8s 0.6s ease-out forwards;
+            opacity: 0;
+        }
+
+        .mission-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: var(--accent-light);
+            text-align: center;
+        }
+
+        .mission-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .mission-card {
+            background: rgba(42, 138, 127, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            border-left: 4px solid var(--accent-teal);
+        }
+
+        .mission-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* Tech Stack */
+        .tech-stack {
+            max-width: 1200px;
+            margin: 50px auto;
+            text-align: center;
+            animation: fadeInUp 0.8s 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        .tech-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: var(--accent-light);
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+        }
+
+        .tech-item {
+            background: rgba(26, 46, 58, 0.7);
+            border-radius: 10px;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .tech-item:hover {
+            transform: translateY(-5px);
+            background: rgba(42, 138, 127, 0.2);
+        }
+
+        .tech-icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: var(--accent-teal);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--therapy-dark);
+            padding: 60px 5% 30px;
+            margin-top: auto;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 50px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-light);
+            margin-bottom: 20px;
+        }
+
+        .footer-logo i {
+            font-size: 2rem;
+        }
+
+        .footer-about {
+            color: var(--accent-light);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(175, 216, 208, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-light);
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background-color: var(--accent-teal);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .footer-links h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .footer-link {
+            display: block;
+            color: var(--accent-light);
+            margin-bottom: 15px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .footer-contact h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .contact-info {
+            color: var(--accent-light);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .contact-info i {
+            margin-top: 3px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            margin-top: 40px;
+            border-top: 1px solid rgba(175, 216, 208, 0.1);
+            color: var(--accent-light);
+            font-size: 0.9rem;
+        }
+
+        .copyright {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .creator-profile {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .creator-details {
+                text-align: center;
+            }
+
+            .mission-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .about-title {
+                font-size: 2.5rem;
+            }
+
+            .creator-image {
+                width: 250px;
+                height: 250px;
+            }
+
+            .mission-section {
+                padding: 40px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .about-title {
+                font-size: 2rem;
+            }
+
+            .about-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .creator-image {
+                width: 200px;
+                height: 200px;
+            }
+
+            .nav-logo span {
+                display: none;
+            }
+        }
+
+        /* Constellation Timeline */
+        .timeline-section {
+            position: relative;
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 0 5%;
+        }
+
+        .timeline-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 60px;
+            color: var(--accent-light);
+            position: relative;
+        }
+
+        .timeline-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--accent-teal);
+        }
+
+        .constellation {
+            position: relative;
+            height: 800px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><circle cx="10%" cy="15%" r="2" fill="white"/><circle cx="25%" cy="30%" r="2" fill="white"/><circle cx="40%" cy="20%" r="2" fill="white"/><circle cx="55%" cy="35%" r="2" fill="white"/><circle cx="70%" cy="25%" r="2" fill="white"/><circle cx="85%" cy="40%" r="2" fill="white"/><circle cx="30%" cy="50%" r="2" fill="white"/><circle cx="45%" cy="65%" r="2" fill="white"/><circle cx="60%" cy="55%" r="2" fill="white"/><circle cx="75%" cy="70%" r="2" fill="white"/><circle cx="20%" cy="75%" r="2" fill="white"/><circle cx="35%" cy="85%" r="2" fill="white"/><circle cx="50%" cy="80%" r="2" fill="white"/></svg>');
+            background-size: cover;
+        }
+
+        .timeline-path {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--accent-teal), transparent);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            position: absolute;
+            width: 300px;
+            padding: 20px;
+            background: rgba(26, 46, 58, 0.9);
+            border-radius: 15px;
+            border: 1px solid var(--accent-teal);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transition: all 0.5s ease;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--accent-teal);
+            border-radius: 50%;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .timeline-item.left {
+            left: 10%;
+            transform: translateX(-100px);
+        }
+
+        .timeline-item.right {
+            right: 10%;
+            transform: translateX(100px);
+        }
+
+        .timeline-item.left::before {
+            right: -30px;
+        }
+
+        .timeline-item.right::before {
+            left: -30px;
+        }
+
+        .timeline-item.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .timeline-date {
+            font-size: 0.9rem;
+            color: var(--accent-teal);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .timeline-content {
+            line-height: 1.6;
+        }
+
+        /* Future Goals Section */
+        .future-section {
+            background: linear-gradient(135deg, rgba(42, 138, 127, 0.1) 0%, transparent 100%);
+            padding: 80px 5%;
+            margin: 100px 0;
+            border-top: 1px solid rgba(175, 216, 208, 0.2);
+            border-bottom: 1px solid rgba(175, 216, 208, 0.2);
+        }
+
+        .future-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 60px;
+            color: var(--accent-light);
+        }
+
+        .future-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .future-card {
+            background: rgba(26, 46, 58, 0.7);
+            border-radius: 15px;
+            padding: 30px;
+            border-left: 4px solid var(--accent-teal);
+            transition: all 0.3s ease;
+        }
+
+        .future-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .future-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* Philosophy Section */
+        .philosophy-section {
+            max-width: 800px;
+            margin: 100px auto;
+            padding: 0 5%;
+            text-align: center;
+        }
+
+        .philosophy-title {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: var(--accent-light);
+        }
+
+        .philosophy-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            font-style: italic;
+            position: relative;
+            padding: 40px;
+        }
+
+        .philosophy-content::before,
+        .philosophy-content::after {
+            content: '"';
+            font-size: 4rem;
+            color: var(--accent-teal);
+            opacity: 0.3;
+            position: absolute;
+        }
+
+        .philosophy-content::before {
+            top: 0;
+            left: 0;
+        }
+
+        .philosophy-content::after {
+            bottom: -30px;
+            right: 0;
+        }
+
+        /* Inspirations Section */
+        .inspirations-section {
+            max-width: 1200px;
+            margin: 100px auto;
+            padding: 0 5%;
+        }
+
+        .inspirations-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 60px;
+            color: var(--accent-light);
+        }
+
+        .inspirations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .inspiration-card {
+            background: rgba(26, 46, 58, 0.7);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .inspiration-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .inspiration-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--accent-teal);
+            margin: 0 auto 20px;
+        }
+
+        .inspiration-name {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .inspiration-title {
+            color: var(--accent-teal);
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .timeline-item {
+                width: 250px;
+            }
+
+            .timeline-item.left {
+                left: 5%;
+            }
+
+            .timeline-item.right {
+                right: 5%;
+            }
+
+            .future-title,
+            .philosophy-title,
+            .inspirations-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .timeline-item {
+                width: 200px;
+                padding: 15px;
+            }
+
+            .constellation {
+                height: 1000px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="index.html" class="nav-logo">
+            <i class="fas fa-brain"></i>
+            <span>KHIYALAT</span>
+        </a>
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="features.html" class="nav-link">Features</a>
+            <a href="about.html" class="nav-link active">About</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+            <a href="try-now.html" class="nav-link nav-cta">Try Now</a>
+        </div>
+    </nav>
+
+    <!-- About Hero -->
+    <section class="about-hero">
+        <h1 class="about-title">The Mind Behind KHIYALAT</h1>
+        <p class="about-subtitle">Where artificial intelligence meets human compassion to revolutionize and create an
+            Impact.
+        </p>
+    </section>
+
+    <!-- Creator Profile -->
+    <div class="creator-profile">
+        <img src="arslan.jpeg" alt="Arslan Rathore" class="creator-image">
+        <div class="creator-details">
+            <h2 class="creator-name">Arslan Rathore</h2>
+            <div class="creator-title">
+                <i class="fas fa-user-graduate"></i>
+                Computer Science Student at COMSATS University Abbottabad
+            </div>
+            <p class="creator-bio">
+                Passionate AI developer with a vision to create intelligent systems that adapt to human needs.
+                My journey in technology began with a fascination for how machines can understand and respond
+                to human emotions, leading to the creation of KHIYALAT.
+            </p>
+
+            <div class="education-item">
+                <h3 class="education-title">
+                    <i class="fas fa-university"></i>
+                    COMSATS University Abbottabad
+                </h3>
+                <p>Bachelor of Science in Computer Science (Current)</p>
+                <p>Specializing in Artificial Intelligence and Machine Learning</p>
+            </div>
+
+            <div class="education-item">
+                <h3 class="education-title">
+                    <i class="fas fa-graduation-cap"></i>
+                    Government College University
+                </h3>
+                <p>F.Sc. (Pre-Medicine) - Graduated with Honors</p>
+                <p>Developed foundational skills in Quant analysis and logical thinking</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Constellation Timeline -->
+    <section class="timeline-section">
+        <h2 class="timeline-title">Development Journey</h2>
+        <div class="constellation">
+            <div class="timeline-path"></div>
+
+            <div class="timeline-item left" style="top: 10%;">
+                <div class="timeline-date">2020 - Inspiration</div>
+                <div class="timeline-content">
+                    First conceptualized KHIYALAT during F.Sc. studies, fascinated by the intersection of psychology and
+                    technology.
+                </div>
+            </div>
+
+            <div class="timeline-item right" style="top: 25%;">
+                <div class="timeline-date">2022 - Foundation</div>
+                <div class="timeline-content">
+                    Began studying machine learning fundamentals and cognitive psychology to build theoretical
+                    foundation.
+                </div>
+            </div>
+
+            <div class="timeline-item left" style="top: 40%;">
+                <div class="timeline-date">2023 - First Prototype</div>
+                <div class="timeline-content">
+                    Developed initial Python-based chatbot with basic NLP capabilities during university coursework.
+                </div>
+            </div>
+
+            <div class="timeline-item right" style="top: 55%;">
+                <div class="timeline-date">Mid 2024 - Research Phase</div>
+                <div class="timeline-content">
+                    Conducted extensive research on mental health applications of AI, studying existing therapeutic
+                    frameworks.
+                </div>
+            </div>
+
+            <div class="timeline-item left" style="top: 70%;">
+                <div class="timeline-date">Early 2025 - KHIYALAT 1.0</div>
+                <div class="timeline-content">
+                    Launched first functional version with mood tracking and basic cognitive behavioral
+                    exercises.
+                </div>
+            </div>
+
+            <div class="timeline-item right" style="top: 85%;">
+                <div class="timeline-date">Mid 2025 - Expansion</div>
+                <div class="timeline-content">
+                    Integrated advanced features like voice recognition and personalized learning algorithms.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Future Goals Section -->
+    <section class="future-section">
+        <h2 class="future-title">Future Horizons</h2>
+        <div class="future-grid">
+            <div class="future-card">
+                <h3><i class="fas fa-chart-line"></i> Quantitative Revolution</h3>
+                <p>Developing AI systems that can extract and synthesize knowledge across diverse fields including
+                    medicine, finance, and materials science, creating interdisciplinary breakthroughs to break into
+                    Private Equity starting personal hedge fund</p>
+            </div>
+            <div class="future-card">
+                <h3><i class="fas fa-atom"></i> Clean Energy Vision</h3>
+                <p>Pioneer advanced research in thermonuclear power plant design for Pakistan, focusing on sustainable
+                    and scalable clean energy solutions to address energy crises.</p>
+            </div>
+            <div class="future-card">
+                <h3><i class="fas fa-robot"></i> AGI Development</h3>
+                <p>Push toward Artificial General Intelligence that can adapt to multiple domains while maintaining
+                    ethical boundaries and human-centric values.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Philosophy Section -->
+    <section class="philosophy-section">
+        <h2 class="philosophy-title">Personal Philosophy</h2>
+        <div class="philosophy-content">
+            <p>The meaning of life is to keep striving for a better future. We are made by nature to adapt and evolve.
+                My philosophy is to live every day better than the last, making every second count in the pursuit of
+                knowledge and the betterment of humanity.</p>
+        </div>
+    </section>
+
+    <!-- Inspirations Section -->
+    <section class="inspirations-section">
+        <h2 class="inspirations-title">Guiding Lights</h2>
+        <div class="inspirations-grid">
+            <div class="inspiration-card">
+                <img src="abdussalam.webp" alt="Abdus Salam" class="inspiration-image">
+                <h3 class="inspiration-name">Abdus Salam</h3>
+                <div class="inspiration-title">Nobel Laureate Physicist</div>
+                <p>First Pakistani Nobel Prize winner whose work in theoretical physics inspires my scientific rigor.
+                    His devotion and Selflessness to devote his life's purpose to be an patroirt makes me work to make
+                    my nation strong.
+                </p>
+            </div>
+            <div class="inspiration-card">
+                <img src="hesienberg.jpeg" alt="Werner Heisenberg" class="inspiration-image">
+                <h3 class="inspiration-name">Werner Heisenberg</h3>
+                <div class="inspiration-title">Quantum Pioneer</div>
+                <p>His uncertainty principle shaped my understanding of knowledge boundaries in Theoretical physics.</p>
+            </div>
+            <div class="inspiration-card">
+                <img src="allamaiqbal.jpeg" alt="Allama Iqbal" class="inspiration-image">
+                <h3 class="inspiration-name">Allama Iqbal</h3>
+                <div class="inspiration-title">Poet-Philosopher</div>
+                <p>His concept of "Khudi" (self-actualization) informs my approach to work selflessly to have one aim to
+                    work for my country. </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="mission-section">
+        <h2 class="mission-title">Our Mission & Vision</h2>
+        <div class="mission-content">
+            <div class="mission-card">
+                <h3><i class="fas fa-bullseye"></i> The Mission</h3>
+                <p>To develop an AI companion that doesn't just perform tasks, but understands context, adapts to
+                    individual needs, and grows with its users. KHIYALAT aims to bridge the gap between technology and
+                    human emotion, creating tools that enhance mental wellness through intelligent interaction.</p>
+            </div>
+            <div class="mission-card">
+                <h3><i class="fas fa-eye"></i> The Vision</h3>
+                <p>To pioneer a new generation of AI that serves as a true companion - capable of handling diverse
+                    functions from mental health support to productivity assistance, while maintaining the human touch
+                    that makes technology relatable and trustworthy.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack -->
+    <div class="tech-stack">
+        <h2 class="tech-title">Technologies Powering KHIYALAT</h2>
+        <div class="tech-grid">
+            <div class="tech-item">
+                <div class="tech-icon"><i class="fab fa-python"></i></div>
+                <h3>Python</h3>
+                <p>Core AI algorithms</p>
+            </div>
+            <div class="tech-item">
+                <div class="tech-icon"><i class="fas fa-brain"></i></div>
+                <h3>TensorFlow</h3>
+                <p>Machine learning</p>
+            </div>
+            <div class="tech-item">
+                <div class="tech-icon"><i class="fab fa-js"></i></div>
+                <h3>Node.js</h3>
+                <p>Backend services</p>
+            </div>
+            <div class="tech-item">
+                <div class="tech-icon"><i class="fas fa-database"></i></div>
+                <h3>MongoDB</h3>
+                <p>Data storage</p>
+            </div>
+            <div class="tech-item">
+                <div class="tech-icon"><i class="fab fa-react"></i></div>
+                <h3>React</h3>
+                <p>Frontend framework</p>
+            </div>
+            <div class="tech-item">
+                <div class="tech-icon"><i class="fas fa-robot"></i></div>
+                <h3>NLP</h3>
+                <p>Natural language processing</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-about-col">
+                <div class="footer-logo">
+                    <i class="fas fa-brain"></i>
+                    <span>KHIYALAT</span>
+                </div>
+                <p class="footer-about">
+                    Khiyalat is an AI psychological companion designed to help you understand and navigate your thoughts
+                    with compassion and insight.
+                </p>
+                <div class="footer-social">
+                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                </div>
+            </div>
+            <div class="footer-links-col">
+                <h3>Quick Links</h3>
+                <a href="index.html" class="footer-link">Home</a>
+                <a href="features.html" class="footer-link">Features</a>
+                <a href="about.html" class="footer-link">About</a>
+                <a href="contact.html" class="footer-link">Contact</a>
+                <a href="try-now.html" class="footer-link">Try Now</a>
+            </div>
+            <div class="footer-links-col">
+                <h3>Resources</h3>
+                <a href="blog.html" class="footer-link">Blog</a>
+                <a href="contact.html" class="footer-link">Help Center</a>
+                <a href="#" class="footer-link">Privacy Policy</a>
+                <a href="#" class="footer-link">Terms of Service</a>
+                <a href="#" class="footer-link">Research</a>
+            </div>
+            <div class="footer-contact-col">
+                <h3>Contact Us</h3>
+                <div class="contact-info">
+                    <i class="fas fa-envelope"></i>
+                    <span>ininsico@gmail.com</span>
+                </div>
+                <div class="contact-info">
+                    <i class="fas fa-phone-alt"></i>
+                    <span>+923315821144</span>
+                </div>
+                <div class="contact-info">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Jhelum, Punjab Pakistan</span>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="copyright">
+                <i class="far fa-copyright"></i>
+                <span>2023 KHIYALAT. All rights reserved.</span>
+            </div>
+            <p>AI does not replace professional medical advice. If in crisis, please contact emergency services.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Constellation Timeline Animation
+        document.addEventListener('DOMContentLoaded', function () {
+            // Animate timeline items on scroll
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            const constellation = document.querySelector('.constellation');
+
+            function checkTimeline() {
+                const triggerBottom = window.innerHeight * 0.8;
+
+                timelineItems.forEach(item => {
+                    const itemTop = item.getBoundingClientRect().top;
+
+                    if (itemTop < triggerBottom) {
+                        item.classList.add('active');
+                    }
+                });
+            }
+
+            // Initial check
+            checkTimeline();
+
+            // Scroll event listener
+            window.addEventListener('scroll', checkTimeline);
+
+            // Add twinkling stars effect
+            setInterval(() => {
+                const stars = constellation.querySelectorAll('circle');
+                stars.forEach(star => {
+                    if (Math.random() > 0.7) {
+                        star.style.opacity = Math.random();
+                    }
+                });
+            }, 1000);
+
+            // Animate other sections
+            const animateOnScroll = function () {
+                const elements = document.querySelectorAll('.creator-profile, .mission-section, .tech-stack, .future-section, .philosophy-section, .inspirations-section');
+                elements.forEach(element => {
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+
+                    if (elementPosition < windowHeight - 100) {
+                        element.style.opacity = '1';
+                        element.style.transform = 'translateY(0)';
+                    }
+                });
+            };
+
+            window.addEventListener('scroll', animateOnScroll);
+            animateOnScroll(); // Trigger once on load
+        });
+    </script>
+</body>
+
+</html>

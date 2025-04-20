@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research | KHIYALAT</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --therapy-dark: #1a2e3a;
+            --therapy-medium: #2a3b46;
+            --therapy-light: #3a4a55;
+            --accent-teal: #2a8a7f;
+            --accent-light: #afd8d0;
+            --text-light: #e0f0ea;
+            --nav-height: 80px;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--therapy-medium) 0%, var(--therapy-dark) 100%);
+            color: var(--text-light);
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            line-height: 1.6;
+        }
+
+        /* NAVIGATION (identical to other pages) */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--nav-height);
+            background: rgba(26, 46, 58, 0.98);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 5%;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent-light);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-logo i {
+            font-size: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-teal);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-light);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link.active {
+            color: var(--accent-light);
+            font-weight: 600;
+        }
+
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            background-color: var(--accent-teal);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .nav-cta:hover {
+            background-color: #1d6a60;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(42, 138, 127, 0.4);
+        }
+
+        /* RESEARCH CONTENT */
+        .research-container {
+            max-width: 1200px;
+            margin: calc(var(--nav-height) + 40px) auto 80px;
+            padding: 0 5%;
+        }
+
+        /* Hero Section */
+        .research-hero {
+            text-align: center;
+            padding: 80px 0 60px;
+            position: relative;
+        }
+
+        .research-hero h1 {
+            font-size: 2.8rem;
+            background: linear-gradient(to right, var(--accent-light), white);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+
+        .research-hero p {
+            font-size: 1.2rem;
+            color: var(--accent-light);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .floating-brain {
+            width: 120px;
+            margin: 30px auto;
+            animation: pulse 4s infinite alternate;
+            filter: drop-shadow(0 0 15px rgba(42, 138, 127, 0.3));
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 0.9;
+            }
+
+            100% {
+                transform: translateY(-10px) scale(1.05);
+                opacity: 1;
+            }
+        }
+
+        /* Research Sections */
+        .research-section {
+            background: rgba(26, 46, 58, 0.7);
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(175, 216, 208, 0.2);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+
+        .research-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .research-section h2 {
+            color: var(--accent-light);
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--accent-teal);
+        }
+
+        .research-section h3 {
+            color: white;
+            font-size: 1.4rem;
+            margin: 30px 0 15px;
+        }
+
+        /* Theory Cards */
+        .theory-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .theory-card {
+            background: rgba(42, 138, 127, 0.1);
+            border-radius: 10px;
+            padding: 25px;
+            border: 1px solid var(--accent-teal);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+        }
+
+        .theory-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            background: rgba(42, 138, 127, 0.2);
+        }
+
+        .theory-card h4 {
+            color: white;
+            margin-top: 0;
+            font-size: 1.2rem;
+        }
+
+        .theory-card p {
+            margin-bottom: 15px;
+        }
+
+        /* Data Visualization */
+        .data-visual {
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 30px 0;
+            min-height: 300px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .chart-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-light);
+            font-style: italic;
+        }
+
+        /* Neural Network Diagram */
+        .neural-network {
+            width: 100%;
+            height: auto;
+            margin: 30px 0;
+        }
+
+        .neural-node {
+            fill: var(--therapy-light);
+            stroke: var(--accent-teal);
+            stroke-width: 2;
+            transition: all 0.3s ease;
+        }
+
+        .neural-node:hover {
+            fill: var(--accent-teal);
+            filter: drop-shadow(0 0 8px var(--accent-light));
+        }
+
+        .neural-path {
+            stroke: var(--accent-light);
+            stroke-width: 1;
+            opacity: 0.6;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding: 40px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 2px;
+            height: 100%;
+            background: var(--accent-teal);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 50px;
+            width: 50%;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+
+        .timeline-dot {
+            width: 20px;
+            height: 20px;
+            background: var(--accent-teal);
+            border-radius: 50%;
+            position: absolute;
+            top: 30px;
+            right: -10px;
+            animation: float 3s infinite ease-in-out;
+        }
+
+        .timeline-item:nth-child(even) .timeline-dot {
+            left: -10px;
+            right: auto;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* FOOTER (identical to other pages) */
+        footer {
+            background: var(--therapy-dark);
+            padding: 60px 5% 30px;
+            margin-top: auto;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 50px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-light);
+            margin-bottom: 20px;
+        }
+
+        .footer-logo i {
+            font-size: 2rem;
+        }
+
+        .footer-about {
+            color: var(--accent-light);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(175, 216, 208, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-light);
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background-color: var(--accent-teal);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .footer-links h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .footer-link {
+            display: block;
+            color: var(--accent-light);
+            margin-bottom: 15px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .footer-contact h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .contact-info {
+            color: var(--accent-light);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .contact-info i {
+            margin-top: 3px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            margin-top: 40px;
+            border-top: 1px solid rgba(175, 216, 208, 0.1);
+            color: var(--accent-light);
+            font-size: 0.9rem;
+        }
+
+        .copyright {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .research-hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .research-section {
+                padding: 30px;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                left: 0 !important;
+                padding-left: 50px;
+            }
+
+            .timeline-dot {
+                left: 10px !important;
+                right: auto !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="index.html" class="nav-logo">
+            <i class="fas fa-brain"></i>
+            <span>KHIYALAT</span>
+        </a>
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="features.html" class="nav-link">Features</a>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+            <a href="terms.html" class="nav-link">Terms</a>
+            <a href="privacy-policy.html" class="nav-link">Privacy</a>
+            <a href="research.html" class="nav-link active">Research</a>
+            <a href="try-now.html" class="nav-cta">Try Now</a>
+        </div>
+    </nav>
+
+    <!-- Research Content -->
+    <div class="research-container">
+        <!-- Hero Section -->
+        <section class="research-hero">
+            <h1>The Science Behind KHIYALAT</h1>
+            <p>Evidence-based AI for mental wellbeing</p>
+            <img src="https://cdn-icons-png.flaticon.com/512/942/942799.png" class="floating-brain"
+                alt="Brain Illustration">
+        </section>
+
+        <!-- Scientific Foundation -->
+        <section class="research-section">
+            <h2>Scientific Foundation</h2>
+            <p>KHIYALAT integrates proven psychological frameworks with cutting-edge AI to deliver meaningful mental
+                health support.</p>
+
+            <div class="theory-grid">
+                <div class="theory-card">
+                    <h4>Cognitive Behavioral Therapy</h4>
+                    <p>Our AI adapts CBT techniques to help identify and reframe negative thought patterns.</p>
+                    <p><small>Based on Beck's cognitive model (1976)</small></p>
+                </div>
+                <div class="theory-card">
+                    <h4>Mindfulness-Based</h4>
+                    <p>Incorporates mindfulness exercises to enhance present-moment awareness.</p>
+                    <p><small>Inspired by Kabat-Zinn's MBSR program</small></p>
+                </div>
+                <div class="theory-card">
+                    <h4>Positive Psychology</h4>
+                    <p>Focuses on building resilience and emotional wellbeing.</p>
+                    <p><small>Rooted in Seligman's PERMA model</small></p>
+                </div>
+            </div>
+        </section>
+        <!-- Clinical Studies -->
+        <section class="research-section">
+            <h2>Clinical Studies & Results</h2>
+            <p>Initial pilot studies show significant improvements in users' mental wellbeing metrics:</p>
+
+            <div class="chart-container" style="height: 400px;">
+                <canvas id="improvementChart"></canvas>
+            </div>
+
+            <h3>Participant Feedback</h3>
+            <div class="theory-card">
+                <p><i>"After 4 weeks with KHIYALAT, my level of thinking enhanced by 18%."</i></p>
+                <p>- Study Participant A</p>
+            </div>
+        </section>
+
+
+        <!-- AI Methodology -->
+        <section class="research-section">
+            <h2>AI Methodology</h2>
+            <p>Our neural network architecture specializes in emotional pattern recognition:</p>
+
+            <svg class="neural-network" viewBox="0 0 500 300">
+                <!-- Input Layer -->
+                <circle class="neural-node" cx="100" cy="100" r="15" />
+                <circle class="neural-node" cx="100" cy="150" r="15" />
+                <circle class="neural-node" cx="100" cy="200" r="15" />
+
+                <!-- Hidden Layer -->
+                <circle class="neural-node" cx="250" cy="80" r="15" />
+                <circle class="neural-node" cx="250" cy="150" r="15" />
+                <circle class="neural-node" cx="250" cy="220" r="15" />
+
+                <!-- Output Layer -->
+                <circle class="neural-node" cx="400" cy="150" r="15" />
+
+                <!-- Connections -->
+                <path class="neural-path" d="M115,100 L235,80" />
+                <path class="neural-path" d="M115,100 L235,150" />
+                <path class="neural-path" d="M115,150 L235,80" />
+                <path class="neural-path" d="M115,150 L235,150" />
+                <path class="neural-path" d="M115,150 L235,220" />
+                <path class="neural-path" d="M115,200 L235,150" />
+                <path class="neural-path" d="M115,200 L235,220" />
+                <path class="neural-path" d="M265,80 L385,150" />
+                <path class="neural-path" d="M265,150 L385,150" />
+                <path class="neural-path" d="M265,220 L385,150" />
+            </svg>
+
+            <p>Interactive model - hover over nodes to see connections light up</p>
+        </section>
+
+        <!-- Research Timeline -->
+        <section class="research-section">
+            <h2>Research Timeline</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h3>2024 Q2</h3>
+                    <p>Initial concept development</p>
+                    <div class="timeline-dot"></div>
+                </div>
+                <div class="timeline-item">
+                    <h3>2024 Q2</h3>
+                    <p>First prototype testing</p>
+                    <div class="timeline-dot"></div>
+                </div>
+                <div class="timeline-item">
+                    <h3>2024 Q4</h3>
+                    <p>University partnership established</p>
+                    <div class="timeline-dot"></div>
+                </div>
+                <div class="timeline-item">
+                    <h3>2025 Q1</h3>
+                    <p>Clinical pilot study launched</p>
+                    <div class="timeline-dot"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ethics Section -->
+        <section class="research-section">
+            <h2>Ethics & Safety</h2>
+            <p>We prioritize user wellbeing with:</p>
+            <ul>
+                <li>Bias mitigation protocols</li>
+                <li>Emotional safety checks</li>
+                <li>Transparent data practices</li>
+            </ul>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-about-col">
+                <div class="footer-logo">
+                    <i class="fas fa-brain"></i>
+                    <span>KHIYALAT</span>
+                </div>
+                <p class="footer-about">
+                    Khiyalat is an AI psychological companion designed to help you understand and navigate your thoughts
+                    with compassion and insight.
+                </p>
+                <div class="footer-social">
+                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                </div>
+            </div>
+            <div class="footer-links-col">
+                <h3>Quick Links</h3>
+                <a href="index.html" class="footer-link">Home</a>
+                <a href="features.html" class="footer-link">Features</a>
+                <a href="about.html" class="footer-link">About</a>
+                <a href="contact.html" class="footer-link">Contact</a>
+                <a href="try-now.html" class="footer-link">Try Now</a>
+            </div>
+            <div class="footer-links-col">
+                <h3>Resources</h3>
+                <a href="blog.html" class="footer-link">Blog</a>
+                <a href="contact.html" class="footer-link">Help Center</a>
+                <a href="privacy-policy.html" class="footer-link">Privacy Policy</a>
+                <a href="terms.html" class="footer-link">Terms of Service</a>
+                <a href="research.html" class="footer-link active">Research</a>
+            </div>
+            <div class="footer-contact-col">
+                <h3>Contact Us</h3>
+                <div class="contact-info">
+                    <i class="fas fa-envelope"></i>
+                    <span>ininsico@gmail.com</span>
+                </div>
+                <div class="contact-info">
+                    <i class="fas fa-phone-alt"></i>
+                    <span>+923315821144</span>
+                </div>
+                <div class="contact-info">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Jhelum, Punjab Pakistan</span>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="copyright">
+                <i class="far fa-copyright"></i>
+                <span>2025 KHIYALAT. All rights reserved.</span>
+            </div>
+            <p>AI does not replace professional medical advice. If in crisis, please contact emergency services.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll animation trigger
+        document.addEventListener('DOMContentLoaded', function () {
+            const sections = document.querySelectorAll('.research-section');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+
+            // Neural network hover effects
+            const nodes = document.querySelectorAll('.neural-node');
+            const paths = document.querySelectorAll('.neural-path');
+
+            nodes.forEach(node => {
+                node.addEventListener('mouseenter', function () {
+                    this.style.fill = 'var(--accent-teal)';
+                    this.style.filter = 'drop-shadow(0 0 10px var(--accent-light))';
+
+                    // Highlight connected paths
+                    const nodeId = this.getAttribute('cx') + '-' + this.getAttribute('cy');
+                    paths.forEach(path => {
+                        if (path.getAttribute('d').includes(nodeId)) {
+                            path.style.stroke = 'var(--accent-teal)';
+                            path.style.strokeWidth = '2';
+                            path.style.opacity = '1';
+                        }
+                    });
+                });
+
+                node.addEventListener('mouseleave', function () {
+                    this.style.fill = 'var(--therapy-light)';
+                    this.style.filter = 'none';
+
+                    // Reset paths
+                    paths.forEach(path => {
+                        path.style.stroke = 'var(--accent-light)';
+                        path.style.strokeWidth = '1';
+                        path.style.opacity = '0.6';
+                    });
+                });
+            });
+        });
+
+    </script>
+
+
+    <!-- Add this script right before closing </body> tag -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Animated Bar Chart with Glow Effects
+        document.addEventListener('DOMContentLoaded', function () {
+            const ctx = document.getElementById('improvementChart').getContext('2d');
+
+            // Glow effect configuration
+            const glow = {
+                beforeDatasetsDraw(chart) {
+                    const ctx = chart.ctx;
+                    chart.data.datasets.forEach((dataset, i) => {
+                        const meta = chart.getDatasetMeta(i);
+                        if (!meta.hidden) {
+                            meta.data.forEach((bar) => {
+                                ctx.save();
+                                ctx.shadowColor = 'rgba(42, 138, 127, 0.5)';
+                                ctx.shadowBlur = 15;
+                                ctx.shadowOffsetX = 0;
+                                ctx.shadowOffsetY = 5;
+                                ctx.restore();
+                            });
+                        }
+                    });
+                }
+            };
+
+            new Chart(ctx, {
+                type: 'bar',
+                plugins: [glow],
+                data: {
+                    labels: ['Anxiety', 'Depression', 'Stress', 'Focus', 'Mood', 'Sleep'],
+                    datasets: [{
+                        label: 'Improvement After 4 Weeks',
+                        data: [32, 28, 25, 18, 34, 22],
+                        backgroundColor: [
+                            'rgba(42, 138, 127, 0.7)',
+                            'rgba(42, 138, 127, 0.6)',
+                            'rgba(42, 138, 127, 0.5)',
+                            'rgba(42, 138, 127, 0.4)',
+                            'rgba(42, 138, 127, 0.3)',
+                            'rgba(42, 138, 127, 0.2)'
+                        ],
+                        borderColor: 'var(--accent-teal)',
+                        borderWidth: 1,
+                        hoverBackgroundColor: 'var(--accent-light)',
+                        hoverBorderColor: 'white'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    animation: {
+                        duration: 2000,
+                        easing: 'easeOutQuart',
+                        onComplete: () => {
+                            // Continuous subtle pulse animation
+                            const chart = this;
+                            let glow = 0;
+                            let growing = true;
+                            function pulse() {
+                                ctx.shadowBlur = growing ? glow += 0.5 : glow -= 0.5;
+                                if (glow > 15) growing = false;
+                                if (glow < 10) growing = true;
+                                chart.update('none');
+                                requestAnimationFrame(pulse);
+                            }
+                            pulse();
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            labels: {
+                                color: 'var(--text-light)',
+                                font: {
+                                    family: 'Poppins',
+                                    size: 14
+                                }
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function (context) {
+                                    return context.parsed.y + '% improvement';
+                                }
+                            },
+                            displayColors: false,
+                            backgroundColor: 'rgba(26, 46, 58, 0.9)',
+                            titleColor: 'var(--accent-light)',
+                            bodyColor: 'white',
+                            borderColor: 'var(--accent-teal)',
+                            borderWidth: 1
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 50,
+                            ticks: {
+                                color: 'var(--accent-light)',
+                                callback: function (value) {
+                                    return value + '%';
+                                },
+                                font: {
+                                    family: 'Poppins'
+                                }
+                            },
+                            grid: {
+                                color: 'rgba(175, 216, 208, 0.1)'
+                            }
+                        },
+                        x: {
+                            ticks: {
+                                color: 'var(--accent-light)',
+                                font: {
+                                    family: 'Poppins'
+                                }
+                            },
+                            grid: {
+                                display: false
+                            }
+                        }
+                    },
+                    onHover: (event, chartElements) => {
+                        // Enhanced glow on hover
+                        if (chartElements.length) {
+                            const ctx = this.ctx;
+                            ctx.shadowColor = 'rgba(175, 216, 208, 0.8)';
+                            ctx.shadowBlur = 25;
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
