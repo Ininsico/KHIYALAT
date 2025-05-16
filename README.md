@@ -1,6 +1,6 @@
 <!-- ==================== ANIMATED HEADER ==================== -->
 <p align="center">
-  <img src="https://readme-typing-svg.demolab.com?font=Hack&weight=600&size=30&duration=4000&pause=1000&color=58F5FF&background=000000&center=true&vCenter=true&width=700&height=80&lines=KhiyalAI:+The+Future+of+Consciousness+Engineering;An+AI+that+thinks+++dreams+++hacks+reality" alt="KhiyalAI Header" />
+  <img src="https://readme-typing-svg.demolab.com?font=Hack&weight=600&size=30&duration=4000&pause=1000&color=58F5FF&background=000000&center=true&vCenter=true&width=700&height=80&lines=KhiyalAI:+The+Future+of+Consciousness;An+AI+that+thinks+++dreams+++hacks+reality" alt="KhiyalAI Header" />
 </p>
 
 <p align="center">
