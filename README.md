@@ -15,7 +15,7 @@
 
 ---
 
-## 🌌 **About KhiyalAI**  (Work in progress)
+## 🌌 **About KhiyalatAI**  (Work in progress)
 **KhiyalAI** is a **quantum-neural hybrid system** designed to:  
 - 🧠 **Simulate human consciousness** via EEG-to-AI mapping  
 - 🔐 **Generate unbreakable encryption** using neuro-inspired algorithms  
